@@ -1,0 +1,159 @@
+page{
+  height: 100%;
+  background-color: #fff
+}
+
+.job_day{
+   width: 100%;
+
+   height: 400rpx;
+   display: flex;
+   flex-direction: column;
+   background-image: url('https://upload-images.jianshu.io/upload_images/4179819-dbd16fa38e6e175d.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/540');
+  background-repeat: round;
+  opacity: 0.8
+}
+.day_num{
+   width: 100%;
+   margin-top: 100rpx;
+   font-size: 150rpx;
+   text-align: center;
+   color: red;
+   font-weight: 800;
+  
+}
+.day_notice{
+   width: 100%;
+   font-size: 25rpx;
+   text-align: center;
+   margin-bottom: 20px;
+   font-weight: 700;
+   color: black
+}
+.word_num{
+   width: 100%;
+   height: 150rpx;
+   display: flex;
+   flex-direction: row;
+   background-color:white;
+   border-top: 7px solid ghostwhite;
+   justify-content: space-around;
+   font-weight: 400;
+   color: #515151;
+}
+.today_word_num{
+   font-size: 50rpx;
+   text-align: center;
+   font-weight: 800;
+}
+.new_word_num{
+   font-size: 50rpx;
+   text-align: center;
+   font-weight: 800;
+}
+.lest_num{
+   font-size: 50rpx;
+   text-align: center;
+   font-weight: 800;
+}
+.my_word_num{
+   font-size: 50rpx;
+   text-align: center;
+   font-weight: 800;
+}
+
+.star{
+  margin: auto;
+  font-family: Songti TC;
+  font-size: 20px;
+  color: red;
+  background-color: white;
+  font-weight: 700;
+}
+.star_study{
+  display: flex;
+  margin-left: 40%;
+  margin-top: 20px;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 160rpx;
+  height: 160rpx;
+  border: 2rpx solid red;
+  align-items: center;
+  background-color: white;
+}
+.bookline{
+  display: flex;
+  margin-top: 60px;
+  flex-direction: row;
+  width: 100%;
+  height: 200px;
+  background-color: gainsboro;
+}
+.book1{
+  margin: 5%;
+  border-radius:20px;
+  background-repeat: round;
+  width: 40%;
+  height: 130px;
+  align-items: center;
+  text-align: center;
+  border: 1px #e3351f;
+  background-image: url('https://wxt.sinaimg.cn/thumb300/a0e81c70gy1fdd6iglc3xg20az0aywfg.gif?tags=%5B%5D')
+}
+.book2{
+    margin: 5%;
+  border-radius:20px;
+  background-repeat: round;
+
+  width: 40%;
+  height: 130px;
+  align-items: center;
+  text-align: center;
+  border: 1px #e3351f;
+  background-image: url('https://wxt.sinaimg.cn/thumb300/a0e81c70gy1fdd6ihqcp6g209q0a0wfz.gif?tags=%5B%5D');
+}
+.have_done{
+  position: fixed;
+  left: 10%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 80%;
+  height: 80%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-image: url('https://upload-images.jianshu.io/upload_images/4179819-756122e814b07ec2.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/480');
+  background-size:cover;
+}
+.first_notice{
+  margin: auto;
+  margin-top: 45px;
+  font-family: Songti TC;
+  font-size: 38rpx;
+  color: white;
+  font-weight: 600
+}
+.start_botton{
+  position: fixed;
+  left: 41%;
+  bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 6rpx solid gray;
+  align-items: center;
+  background-color: white;
+  opacity: 0.8;
+}
+.look_me{
+   margin: auto;
+  font-family: Songti TC;
+  font-size: 38rpx;
+  color: black;
+  font-weight: 600;
+
+}

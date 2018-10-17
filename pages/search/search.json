@@ -1,0 +1,10 @@
+{
+
+      "backgroundTextStyle": "light",
+      "backgroundColor": "#4a475b",
+      "navigationBarBackgroundColor": "#4a475b",
+      "navigationBarTitleText": "小鸡单词",
+      "navigationBarTextStyle": "white",
+      "enablePullDownRefresh": true
+
+}

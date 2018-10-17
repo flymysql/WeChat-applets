@@ -1,0 +1,31 @@
+/* pages/collect_card/collect_card.wxss */
+.collect{
+  width: 100%;
+  margin: 10px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pages{
+  background-color: white;
+  height: 100%;width: 100%;
+}
+.simple_look{
+  display: flex;
+  flex-direction: row;
+ padding-top: 15px;
+ padding-left: 6px;
+
+}
+.definition{
+  padding-left: 38px;
+  font-size: 15px;
+
+}
+.last_line{
+  width: 100%;
+  height: 300px;
+  background-image: url('https://upload-images.jianshu.io/upload_images/4179819-4c247b1477685278.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/700');
+  background-repeat: round;
+}

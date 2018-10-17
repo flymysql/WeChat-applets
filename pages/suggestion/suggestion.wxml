@@ -1,0 +1,8 @@
+<view class="my_bg">
+    <view class="input_content">
+        <textarea  class="input"  placeholder="有什么好的建议或者用着不舒服的地方~" bindinput="voteTitle"></textarea>
+    </view>
+    <view class="ok" bindtap="ok">
+       <view class="word-ok">提交~</view>
+    </view>
+</view>

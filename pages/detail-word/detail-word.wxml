@@ -1,0 +1,19 @@
+<view class="page">
+   <view class="input_counter">
+      <input class="input" placeholder="鲜衣怒马少年时~" bindinput="voteTitle">  </input>
+   </view>
+   <view wx:if="{{simple}}" class="simple_look" bindtap="detail"> {{voteTitle}}</view>
+   <view wx:if="{{!(simple)&&(detail)}}" class="simple_look">
+   <image class="read"  src='../../images/yuying.png'  mode="scaleToFill" bindtap='read'></image>
+   <button open-type="share"> <image class="sc"  src='../../images/zf.png'  mode="scaleToFill"></image></button> 
+  <view style="font-size:45rpx;">  {{word}} 【{{pron}}】</view>
+  <view style="height:20px;"></view>
+  <view>{{definition}}</view>
+  <view> {{defen[0].first}}<view style="color:red;display:inline;">　{{defen[1].mid}}　</view> {{defen[0].last}}</view>
+  <view>{{defen[0].translation}}</view>
+  <view style="height:20px;"></view>
+  <view>{{defen[1].first}} <view style="color:red;display:inline;">　{{defen[1].mid}}　</view> {{defen[1].last}}</view>
+  <view>{{defen[1].translation}}</view>
+</view>
+   
+</view>

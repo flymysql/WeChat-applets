@@ -1,0 +1,29 @@
+<view wx:if="{{!(cihui)}}"class="bg1">
+   <view class="botton1" bindtap="choice_book" id="{{id1}}">
+      <view class="word">考研词汇</view>
+      <view class="num_word">3837词</view>
+     </view>
+   <view class="botton2" bindtap="choice_book" id="{{id2}}"> <view class="word">顺序词汇</view><view class="num_word">12347词</view></view>
+   <view class="botton3"  bindtap="choice_book" id="{{id3}}"> <view class="word">四级词汇</view><view class="num_word">2895词</view></view>
+   <view class="botton4" bindtap="choice_book" id="{{id4}}"><view class="word">六级词汇</view><view class="num_word">2085词</view></view>
+      <view class="botton5" bindtap="choice_book" id="{{id12}}"><view class="word">四级核心词</view> <view class="num_word">687词</view></view>
+   <view class="botton6" bindtap="choice_book" id="{{id13}}"> <view class="word">六级重点词</view><view class="num_word">407词</view></view>
+   <view class="botton7"  bindtap="choice_book" id="{{id11}}"> <view class="word">考研核心词</view><view class="num_word">817词</view></view>
+   <view class="botton8" bindtap="choice_book" id="{{id14}}"><view class="word">专八词汇</view><view class="num_word">1938词</view></view>
+</view>
+
+
+<view wx:if="{{(cihui)&&!(tianshu)}}" class="bg3">
+    <view style="height:30px;width:100%;color:white;font-weight:600;padding-top:150rpx;">词汇书一共1000个单词</view>
+    <view style="height:30px;width:100%;color:white;font-weight:600;">你的每天任务量为：</view>
+     <view style="height:30px;width:100%;color:white;font-weight:600;">注意是指新词数</view>
+    <view class="day1" bindtap="day_num" id="{{id5}}" > <view class="word">20</view></view>
+    <view class="day2"bindtap="day_num" id="{{id6}}"><view class="word">30</view></view>
+    <view class="day3" bindtap="day_num" id="{{id7}}"><view class="word">40</view></view>
+    <view class="day4" bindtap="day_num" id="{{id8}}"><view class="word">50</view></view>
+    <view class="day5" bindtap="day_num" id="{{id9}}"><view class="word">60</view></view>
+    <view class="day6"bindtap="day_num" id="{{id10}}"><view class="word">80</view></view>
+</view>
+<view wx:if="{{tianshu}}" class="bg3">
+<view wx:if="{{tianshu}}" class="begin" bindtap="back"><view class="word">开始</view></view>
+</view>

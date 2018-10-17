@@ -1,0 +1,98 @@
+<view clas="page">
+
+<view  class="job_day">
+
+  <view class="day_num">{{title}}</view>
+</view>
+ <image class="sc2" mode="scaleToFill" src="../../images/ji.png"></image>
+ <view class="num_notice">{{true_num}}</view>
+<view wx:if="{{!(showDaan)}}" class="content">
+   <view class="button-1" bindtap="choice" id="{{da4}}">
+      <text class="word-miss" >{{da4}}</text>
+    </view>
+    <view class="button-2" bindtap="choice" id="{{da3}}" >
+      <text class="word-miss" >{{da3}}</text>
+    </view>
+        <view class="button-3" bindtap="choice" id="{{da2}}" >
+      <text class="word-miss" >{{da2}}</text>
+    </view>
+        <view class="button-4" bindtap="choice" id="{{da1}}" >
+      <text class="word-miss" >{{da1}}</text>
+    </view>
+</view>
+<view wx:if="{{showDaan}}" class="content" >
+       <view class="button-5" bindtap="choice" id="{{da1}}">
+      <text class="word-miss" >{{true_word}}</text>
+    </view>
+   <view wx:if="{{daan}}" class="button-6" bindtap="choice" id="{{da1}}">
+      <text class="word-miss" >回答正确</text>
+    </view>
+       <view wx:if="{{!(daan)}}" class="button-7" bindtap="choice" id="{{da1}}">
+      <text class="word-miss" >回答错误</text>
+    </view>
+       <view wx:if="{{!(complete)}}" class="button-8" bindtap="next" >
+      <text class="word-miss" >下一个</text>
+    </view>
+
+
+     <view wx:if="{{complete}}" class="have_done">
+    <view class="first_notice">{{true_num}}</view>
+    <view class="haoyou">好友挑战</view>
+    <view class="history">历史最高分:{{history}}</view>
+    <view class="paihan">
+       <view class="paihan_word">
+          <view>排行榜·每周一更新</view>
+          <view>得分</view>
+       </view>
+       <view class="first_one">
+           <view style=" display: flex;flex-direction: row;">
+               <view  class="first_paimin">1</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[0].avatarUrl}}"></image>
+               <view class="first_name">{{globalData[0].nickName}}</view>
+           </view>
+           <view style="  padding: 12px;">{{globalData[0].score}}</view>
+       </view>
+              <view class="first_one">
+           <view style=" display: flex;flex-direction: row;">
+               <view  class="second_paimin">2</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[1].avatarUrl}}"></image>
+               <view class="first_name">{{globalData[1].nickName}}</view>
+           </view>
+           <view style="  padding: 12px;">{{globalData[1].score}}</view>
+       </view>
+              <view class="first_one">
+           <view style=" display: flex;flex-direction: row;">
+               <view  class="third_paimin">3</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[2].avatarUrl}}"></image>
+               <view class="first_name">{{globalData[2].nickName}}</view>
+           </view>
+           <view style="  padding: 12px;">{{globalData[2].score}}</view>
+       </view> 
+       <view class="first_one">
+        <view style=" display: flex;flex-direction: row;">
+               <view  class="third_paimin">4</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[3].avatarUrl}}"></image>
+               <view class="first_name">{{globalData[3].nickName}}</view>
+           </view>
+           <view style="  padding: 12px;">{{globalData[3].score}}</view>
+       </view>
+       <view class="myself">
+                  <view style=" display: flex;flex-direction: row;">
+               <view  class="third_paimin">我</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{userInfo.avatarUrl}}"></image>
+               <view class="first_name">{{userInfo.nickName}}</view>
+           </view>
+           <view style="  padding: 12px;">{{history}}</view>
+       </view>      
+    </view>
+    <view class="start_botton" bindtap="again">
+       <view class="look_me">再来一局</view>
+    </view>
+        <button open-type="share" class="cancle_botton" bindtap="share">
+       <view class="look_me">好友分享</view>
+    </button>
+</view>
+
+
+</view>
+</view>

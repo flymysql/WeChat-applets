@@ -1,0 +1,92 @@
+<view class="page">
+<view  class="job_day">
+  <view class="day_num">{{true_word}}</view>
+</view>
+ <image class="sc2" mode="scaleToFill" src="../../images/ji.png"></image>
+ <view class="num_notice">{{num}}</view>
+<view wx:if="{{!(showDaan)}}" class="content">
+   <view class="button-1" bindtap="choice" id="{{da4[0]}}">
+      <text class="word-miss" >{{da4[0]}}</text>
+    </view>
+    <view class="button-2" bindtap="choice" id="{{da3[0]}}" >
+      <text class="word-miss" >{{da3[0]}}</text>
+    </view>
+        <view class="button-3" bindtap="choice" id="{{da2[0]}}" >
+      <text class="word-miss" >{{da2[0]}}</text>
+    </view>
+        <view class="button-4" bindtap="choice" id="{{da1[0]}}" >
+      <text class="word-miss" >{{da1[0]}}</text>
+    </view>
+</view>
+<view wx:if="{{showDaan}}" class="content" >
+       <view class="button-5" bindtap="choice" >
+      <text class="word-miss" >{{truedaan}}</text>
+    </view>
+   <view wx:if="{{daan}}" class="button-6" bindtap="choice" >
+      <text class="word-miss" >回答正确</text>
+    </view>
+       <view wx:if="{{!(daan)}}" class="button-7" bindtap="choice" >
+      <text class="word-miss" >回答错误</text>
+    </view>
+       <view wx:if="{{!(complete)}}" class="button-8" bindtap="next" >
+      <text class="word-miss" >下一个</text>
+    </view>
+             <view wx:if="{{complete}}" class="have_done">
+    <view class="first_notice">{{true_num}}</view>
+    <view class="haoyou">好友挑战</view>
+    <view class="history">历史最高分:{{my[2]}}</view>
+    <view class="paihan">
+       <view class="paihan_word">
+          <view>排行榜·每周一更新</view>
+          <view>总排行</view>
+       </view>
+       <view class="first_one">
+           <view style=" display: flex;flex-direction: row;">
+               <view  class="first_paimin">1</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{one[0]}}"></image>
+               <view class="first_name">{{one[1]}}</view>
+           </view>
+           <view style="  padding: 12px;">{{one[2]}}</view>
+       </view>
+              <view class="first_one">
+           <view style=" display: flex;flex-direction: row;">
+               <view  class="second_paimin">2</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{two[0]}}"></image>
+               <view class="first_name">{{two[1]}}</view>
+           </view>
+           <view style="  padding: 12px;">{{two[2]}}</view>
+       </view>
+              <view class="first_one">
+           <view style=" display: flex;flex-direction: row;">
+               <view  class="third_paimin">3</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{three[0]}}"></image>
+               <view class="first_name">{{three[1]}}</view>
+           </view>
+           <view style="  padding: 12px;">{{three[2]}}</view>
+       </view> 
+       <view class="first_one">
+        <view style=" display: flex;flex-direction: row;">
+               <view  class="third_paimin">4</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{four[0]}}"></image>
+               <view class="first_name">{{four[1]}}</view>
+           </view>
+           <view style="  padding: 12px;">{{four[2]}}</view>
+       </view>
+       <view class="myself">
+                  <view style=" display: flex;flex-direction: row;">
+               <view  class="third_paimin">{{my[3]}}</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{my[0]}}"></image>
+               <view class="first_name">{{my[1]}}</view>
+           </view>
+           <view style="  padding: 12px;">{{my[2]}}</view>
+       </view>      
+    </view>
+    <view class="start_botton" bindtap="again">
+       <view class="look_me">再来一局</view>
+    </view>
+        <button open-type="share" class="cancle_botton" bindtap="share">
+       <view class="look_me">好友分享</view>
+    </button>
+</view>
+</view>
+</view>

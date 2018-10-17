@@ -1,0 +1,65 @@
+/* pages/detail-word/detail-word.wxss */
+@import "../study/study.wxss";
+.page{
+    background-image: url('https://upload-images.jianshu.io/upload_images/4179819-a2a42aa749ca2630.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/480');
+    height: 1200rpx;
+    width: 100%;
+    background-size: cover;
+}
+.input_counter{
+  position: fixed;
+  left: 7%;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width:86% ;
+  height: 90rpx;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+.input{
+  width:85% ;
+  height: 78rpx;
+  color: black;
+  margin-top: 5rpx;
+}
+.simple_look{
+  position: fixed;
+  left: 10%;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  width:78% ;
+  border: 1rpx solid #4a475b;
+  background-color: white;
+  opacity: 0.78;
+  padding:10px; 
+}
+.read{
+  position: fixed;
+  right: 10%;
+  top: 17%;
+  display: flex;
+  flex-direction: column;
+  width:60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+
+  background-color: white;
+  opacity: 0.78;
+}
+.sc{
+  position: fixed;
+  right: 25%;
+  top: 17%;
+  display: flex;
+  flex-direction: column;
+  width:60rpx;
+  height: 60rpx;
+
+  background-color: white;
+  opacity: 0.78;
+}

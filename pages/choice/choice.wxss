@@ -1,0 +1,249 @@
+/* pages/choice/choice.wxss */
+
+.bg1{
+  height: 1200rpx;
+  width: 100%;
+  background-image: url('https://upload-images.jianshu.io/upload_images/4179819-9f18bb7a70c502fc.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/400');
+  background-size:cover;
+}
+.botton1{
+  position: fixed;
+  left: 5%;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 27%;
+  height: 20%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+.botton2{
+  position: fixed;
+  left: 37%;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 27%;
+  height: 20%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+.botton3{
+  position: fixed;
+  left: 69%;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 27%;
+  height: 20%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+.botton4{
+  position: fixed;
+  left: 5%;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 27%;
+  height: 20%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+.botton5{
+  position: fixed;
+  left: 37%;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 27%;
+  height: 20%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+.botton6{
+  position: fixed;
+  left: 69%;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 27%;
+  height: 20%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+
+.botton7{
+  position: fixed;
+  left: 5%;
+  top: 55%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 27%;
+  height: 20%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+.botton8{
+  position: fixed;
+  left: 37%;
+  top: 55%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 27%;
+  height: 20%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: white;
+  opacity: 0.78;
+}
+.word{
+  margin: auto;
+  font-family: Songti TC;
+  font-size: 38rpx;
+  color: black;
+  font-weight: 600
+}
+.num_word{
+  margin: auto;
+  font-family: Songti TC;
+  font-size: 30rpx;
+  color: gray;
+  font-weight: 600
+}
+.bg2{
+  height: 200px;
+  width: 100%;
+  background-image: url('https://upload-images.jianshu.io/upload_images/4179819-bcc39e6dd6bc9878.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/429');
+
+}
+.bg3{
+  height: 1200rpx;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+  font-size: 20px;
+  align-items: center;
+  background-image: url('https://upload-images.jianshu.io/upload_images/4179819-a2a42aa749ca2630.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/480');
+}
+.day1{
+  position: fixed;
+  right: 10%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 7rpx solid #4a475b;
+  align-items: center;
+    opacity: 0.78;
+    background-color: white;
+}
+.day2{
+  position: fixed;
+  right: 40%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 7rpx solid #4a475b;
+  align-items: center;
+      opacity: 0.78;
+    background-color: white;
+}
+.day3{
+  position: fixed;
+  right: 70%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 7rpx solid #4a475b;
+  align-items: center;
+      opacity: 0.78;
+    background-color: white;
+}
+.day4{
+  position: fixed;
+  right: 10%;
+  bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 7rpx solid #4a475b;
+  align-items: center;
+      opacity: 0.78;
+    background-color: white;
+}
+.day5{
+  position: fixed;
+  right: 40%;
+  bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 7rpx solid #4a475b;
+  align-items: center;
+      opacity: 0.78;
+    background-color: white;
+}
+.day6{
+  position: fixed;
+  right: 70%;
+  bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 7rpx solid #4a475b;
+  align-items: center;
+      opacity: 0.78;
+    background-color: white;
+}
+
+.begin{
+  position: fixed;
+  left: 41%;
+  bottom: 15%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border: 7rpx solid #4a475b;
+  align-items: center;
+      opacity: 0.78;
+    background-color: white;
+}

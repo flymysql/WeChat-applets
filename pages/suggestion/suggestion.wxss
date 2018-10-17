@@ -1,0 +1,41 @@
+/* pages/suggestion/suggestion.wxss */
+
+.my_bg{
+  height: 1200rpx;
+  width: 100%;
+  background-color: #f7dab0;
+
+}
+.input_content{
+  margin-left: 10%; 
+  width: 80%;
+  height: 400rpx;
+  background-color: #fff;
+  border: 2px solid #979797;
+  border-radius: 20rpx;
+  opacity: 0.9
+}
+.input{
+   height: 100%;
+   width: 100%;
+}
+.ok{
+  position: fixed;
+  left: 25%;
+  top:500rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 50%;
+  height: 100rpx;
+  border: 5px solid #979797;
+  align-items: center;
+  background-color: greenyellow;
+}
+.word-ok {
+  margin: auto;
+  font-family: Songti TC;
+  font-size: 32rpx;
+  color: #000;
+    font-weight: 800;
+}

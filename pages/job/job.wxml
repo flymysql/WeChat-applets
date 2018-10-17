@@ -1,0 +1,43 @@
+<view class="page">
+
+<view class="job_day">
+  <view class="day_num" bindtap="getsql">{{day_num}}</view>
+  <view class="day_notice">打卡天数
+  <image  style="width: 30rpx; height: 30rpx;padding-left:5px;" mode="scaleToFill" src="../../images/time.png"></image>
+  </view>
+</view>
+<view wx:if="{{!(have_done)}}" class="have_done">
+    <view class="first_notice">那么现在，开始我们的单词之旅</view>
+    <view class="start_botton" bindtap="choice">
+       <view class="look_me">点我</view>
+    </view>
+</view>
+<view class="word_num">
+   <view class="new_word_num">{{new_word}}
+     <view style="font-size:25rpx; ">新词数</view>
+   </view>
+   <view class="today_word_num">{{today_word}}
+     <view style="font-size:25rpx; ">今日单词</view>
+   </view>
+   <view class="lest_num">{{lest_word}}
+     <view style="font-size:25rpx; ">已背单词</view>
+   </view>
+   <view class="my_word_num">{{my_word}}
+     <view style="font-size:25rpx; ">我的单词</view>
+   </view>
+
+</view>
+<view class="star_study" bindtap="star_study">
+  <view class="star">start</view>
+</view>
+<view class="bookline">
+   <view bindtap="test1_card" class="book1">
+   <view style="text-size:30rpx;  font-weight:700;">英汉测试</view>
+   </view>
+   <view bindtap="test2_card" class="book2"> <view style="text-size:30rpx;  font-weight:700;">汉英测试</view></view>
+</view>
+
+
+
+</view>
+

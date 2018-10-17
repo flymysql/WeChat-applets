@@ -1,0 +1,365 @@
+/* pages/test/test.wxss */
+.page{
+  height:1200rpx;
+  background-color: #c3c6cf;
+}
+.job_day{
+   width: 100%;
+   height: 380rpx;
+   display: flex;
+   flex-direction: column;
+   background-color:#c3c6cf;
+  align-items: center;
+  box-sizing: border-box;
+
+}
+.day_num{
+   width: 100%;
+   margin-top: 70px;
+   font-size: 25px;
+   text-align: center;
+   color: #444;
+  font-family: Chalkboard;
+   font-weight: 800;
+}
+
+.content{
+   height:795rpx;
+   background-color:#c3c6cf;
+}
+
+.pron-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.sc2{
+  position: fixed;
+  right: 5%;
+  top: 25%;
+  width: 70rpx;
+  height:70rpx;
+  margin-left: -45rpx;
+  font-size: 60rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background-color: #c3c6cf;
+  color: red;
+}
+.num_notice{
+ position: fixed;
+  left: 10%;
+  top:3%;
+  width: 42px;
+  height:42px;
+  margin-left: -45rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: black;
+  font-size: 40px;
+  font-weight: 800;
+}
+.pron-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.word-pron {
+  margin-left: 9rpx;
+  font-family: Chalkboard;
+  font-size: 36rpx;
+  color: #8F8F8F;
+}
+
+.word-definition {
+  position: fixed;
+  height: 50%;
+  width: 100%;
+  bottom: 600rpx;
+  margin-top: 194rpx;
+  font-family: Yuanti TC;
+  font-size: 30rpx;
+  color: #585858;
+}
+
+.button-1 {
+  position: fixed;
+  left: 15%;
+  bottom: 80rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 100rpx;
+  border: 5px solid #979797;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+
+.word-miss {
+  margin: auto;
+  font-family: Songti TC;
+  font-size: 32rpx;
+  color: #000;
+    font-weight: 700;
+}
+
+.button-2 {
+  position: fixed;
+  left: 15%;
+  bottom: 220rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 100rpx;
+  border: 5px solid #979797;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+.button-3 {
+  position: fixed;
+  left: 15%;
+  bottom: 360rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 100rpx;
+  border:5px solid #979797;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+.button-4 {
+  position: fixed;
+  left: 15%;
+  bottom: 500rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 100rpx;
+  border: 5px solid #979797;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+.button-8 {
+  position: fixed;
+  left: 15%;
+  bottom: 100rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 100rpx;
+  border: 5px solid #979797;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+.button-6 {
+  position: fixed;
+  left: 15%;
+  bottom: 250rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 100rpx;
+  border: 5px solid #979797;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+.button-7 {
+  position: fixed;
+  left: 15%;
+  bottom: 250rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 100rpx;
+  border: 5px solid #979797;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+.button-5 {
+  position: fixed;
+  left: 15%;
+  bottom: 400rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width: 70%;
+  height: 100rpx;
+  border: 5px solid #979797;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+.share{
+  position: fixed;
+  left: 42%;
+  bottom: 600rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 150rpx;
+  height: 150rpx;
+  border: 1rpx solid gainsboro;
+  align-items: center;
+  background-color: ghostwhite;
+}
+
+.have_done{
+  position: fixed;
+  left: 0%;
+  bottom: 0%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  background-color: black;
+  opacity: 0.9;
+  color: white
+}
+.first_notice{
+  margin: auto;
+  margin-top: 20px;
+  font-family: Songti TC;
+  font-size: 70px;
+  text-align: center;
+  color: white;
+  font-weight: 800
+}
+.start_botton{
+  position: fixed;
+  left: 25%;
+  bottom: 15%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  width: 50%;
+  height: 45px;
+  align-items: center;
+  background-color: white;
+
+}
+.cancle_botton{
+  position: fixed;
+  left: 25%;
+  bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  width: 50%;
+  height: 45px;
+
+  align-items: center;
+  background-color: white;
+}
+.look_me{
+   margin: auto;
+  font-family: Songti TC;
+  font-size: 38rpx;
+  color: black;
+  font-weight: 600;
+
+}
+.haoyou{
+  position: fixed;
+  left: 40%;
+  top: 19%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 20%;
+  height: 20px;
+  align-items: center;
+  border: 1rpx solid white;
+  font-size: 16px;
+}
+.history{
+  position: fixed;
+  left: 30%;
+  top: 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 40%;
+  height: 20px;
+  align-items: center;
+  border-bottom: 1rpx solid white;
+  font-size: 16px;
+}
+.paihan{
+  position: fixed;
+  left: 5%;
+  top: 33%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+  width: 90%;
+  height: 38%;
+  border: 1rpx solid grey;
+  font-size: 16px;
+}
+.paihan_word{
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+  font-size: 14px;
+  width: 100%;
+  color: gainsboro;
+  border-bottom: 1rpx solid white;
+  justify-content: space-between;
+}
+
+.first_one{
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  font-size: 16px;
+  width: 100%;
+  color: wheat;
+  justify-content: space-between;
+  font-weight: 700;
+
+}
+.myself{
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  font-size: 16px;
+  width: 100%;
+  color: wheat;
+  border-top: 1rpx solid #eee;
+  justify-content: space-between;
+  font-weight: 700;
+
+}
+.first_paimin{
+  height: 40px;
+  width: 15px;
+  color: goldenrod;
+  margin: auto;
+  padding: 12px;
+}
+.second_paimin{
+  height: 40px;
+  width: 15px;
+  color: rosybrown;
+  margin: auto;
+  padding: 12px;
+}
+.third_paimin{
+  height: 40px;
+  width: 15px;
+  color: skyblue;
+  margin: auto;
+  padding: 12px;
+}
+.first_name{
+  height: 40px;
+  margin: auto;
+    padding: 12px; 
+}

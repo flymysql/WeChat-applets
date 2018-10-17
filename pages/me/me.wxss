@@ -1,0 +1,148 @@
+/* pages/me/me.wxss */
+
+/* pages/me/index.wxss */
+.page {
+  background-color: #fff;
+  
+}
+
+.user-card {
+
+  box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  background-size: contain;
+  z-index: 0;
+  margin-bottom: 30rpx;
+  padding-top: 80px;
+  background-image: url('https://upload-images.jianshu.io/upload_images/4179819-f9776ab6601fe9c2.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/700');
+  background-repeat: round;
+}
+
+.user-card__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 1600rpx;
+  z-index: -1;
+}
+
+.user-card__head {
+  width: 120rpx;
+  height: 120rpx;
+  border: 1px solid #6482DD;
+  border-radius: 50%;
+  margin-left: 7%;
+  margin-right: 30rpx;
+  background-color: #fff;
+}
+
+.user-card__name {
+  color: #000;
+  font-size: 38rpx;
+}
+
+.user-card__links {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-card__linkItem {
+  flex: 1;
+  font-size: 32rpx;
+  color: #333;
+  text-align: center;
+  border-right: 1px dotted #ccc;
+  padding: 5rpx 0;
+}
+
+.user-card__linkItem:last-child {
+  border-right: none;
+}
+
+.user-card__linkLabel {
+  color: black;
+}
+
+.user-card__linkValue {
+  padding-left: 15rpx;
+}
+.itemcard{
+  margin-left: 60rpx;
+  width: 50%;
+  border-bottom: 1rpx solid #ccc;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  font-size: 20px;
+  padding-top:13px;
+  
+}
+.item_line{
+  padding-top: 70rpx;
+  background-color: white;
+  width: 100%;
+  height: 800rpx;
+}
+.have_done{
+  position: fixed;
+  left: 10%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  width: 80%;
+  height: 80%;
+  border: 1rpx solid #4a475b;
+  align-items: center;
+  background-color: wheat;
+  background-size:cover;
+}
+.first_notice{
+  margin: auto;
+  margin-top: 70px;
+  font-family: Songti TC;
+  font-size: 38rpx;
+  text-align: center;
+  padding: 20px;
+  color: balck;
+  font-weight: 600
+}
+.start_botton{
+  position: fixed;
+  left: 25%;
+  bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 6rpx solid gray;
+  align-items: center;
+  background-color: white;
+  opacity: 0.8;
+}
+.cancle_botton{
+  position: fixed;
+  right: 25%;
+  bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 6rpx solid gray;
+  align-items: center;
+  background-color: white;
+  opacity: 0.8;
+}
+.look_me{
+   margin: auto;
+  font-family: Songti TC;
+  font-size: 38rpx;
+  color: black;
+  font-weight: 600;
+
+}
