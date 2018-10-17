@@ -1,67 +1,93 @@
 
-
 <view wx:if="{{!(showNot)&&!(cpt)}}" class="job_day">
   <view class="day_num">{{content}}</view>
     <view class="pron-container">
       <image class="pron-icon" bindtap="read" id="{{pron_audio.us[0]}}" src="/images/ji.png"></image>
       <text class="word-pron" bindtap="read" id="{{pron_audio.us[0]}}">/{{pron.uk}}/</text>
     </view>
-  
+
 </view>
 
 <view wx:if="{{showNot}}" class="detail_card">
 <view class='page'>
-<view class="detail_word">{{content}}</view>
-<view class="detail_pron">
-<image bindtap="read"style="width: 20px; height: 20px; background-color: wheat;" mode="scaleToFill" src="../../images/yuying.png" id="{pron_audio.uk[0]}}"></image>
-<view bindtap="read"id="{{pron_audio.uk[0]}}">英/{{pron.uk}}/</view>
-<image bindtap="read" id="{{pron_audio.us[0]}}" style="width: 20px; height: 20px; background-color: wheat;" mode="scaleToFill" src="../../images/yuying.png"></image>
-<view bindtap="read" id="{{pron_audio.us[0]}}">美/{{pron.us}}/</view>
-</view>
- <view style="width:80%;font-size: 16px;font-family: Songti TC;padding-bottom: 6px;" >{{definition}}</view>
-<view class="notice_line"></view>
-<view bindtap="moredefen" style="width:76%; color:gray;text-align:right;padding-bottom:20px;padding-right:45px;font-size:16px; ">更多例句  
- </view>
-<view wx:if="{{!(more)}}">
-<view class="liju_content">
-       <view class="detail_defin"  >{{defen[0].first}}<view style="color:red;display:inline;">　{{defen[0].mid}}　</view>{{defen[0].last}}</view>
-     <view class="detail_defin">{{defen[0].translation}}</view>
-<view style="padding-bottom:20px;"></view>
-    <view class="detail_defin"  >{{defen[1].first}}<view style="color:red;display:inline;">　{{defen[1].mid}}　</view>{{defen[1].last}}</view>
-     <view class="detail_defin">{{defen[1].translation}}</view>
-</view>
 
+<view class="head">
+    <view class="detail_word">{{content}}</view>
+    <view class="detail_pron">
+      <image bindtap="read"style="width: 20px; height: 20px; background-color:rgb(151, 212, 162);" mode="scaleToFill" src="../../images/yuying.png" id="{pron_audio.uk[0]}}"></image>
+      <view bindtap="read"id="{{pron_audio.uk[0]}}">英/{{pron.uk}}/</view>
+      <image bindtap="read" id="{{pron_audio.us[0]}}" style="width: 20px; height: 20px; background-color: rgb(151, 212, 162);" mode="scaleToFill" src="../../images/yuying.png"></image>
+      <view bindtap="read" id="{{pron_audio.us[0]}}">美/{{pron.us}}/</view>
+    </view>
+    <view style="width:80%;font-size: 14px;font-family: Songti TC;padding-bottom: 6px;" >{{definition}}</view>
 </view>
+   
 
-<view wx:if="{{more}}">
-<import src="itemtpl"/>
-<view class="liju_content">
-    <block wx:for="{{defen}}">
-         <template is="more-item" data="{{item}}"/>
-    </block>
-</view>
-</view>
-    <view class="ok"  bindtap="next">
-      <text class="word-next">下一个</text>
+
+<view class="body">
+   <view bindtap="moredefen" style="width:85%; color:gray;text-align:right;padding-bottom:20px;font-size:16px; font-weight: 800; ">更多例句  
+     </view>
+      <view wx:if="{{!(more)}}">
+      <view class="liju_content">
+            <view class="detail_defin"  >{{defen[0].first}}<view style="color:red;display:inline;"> {{defen[0].mid}} </view>{{defen[0].last}}</view>
+          <view class="detail_trans">{{defen[0].translation}}</view>
+      <view style="padding-bottom:20px;"></view>
+          <view class="detail_defin"  >{{defen[2].first}}<view style="color:red;display:inline;"> {{defen[2].mid}} </view>{{defen[2].last}}</view>
+          <view class="detail_trans">{{defen[2].translation}}</view>
+           <view style="padding-bottom:20px;"></view>
+          <view class="detail_defin"  >{{defen[3].first}}<view style="color:red;display:inline;"> {{defen[3].mid}} </view>{{defen[3].last}}</view>
+          <view class="detail_trans">{{defen[3].translation}}</view>
+      </view>
     </view>
 
-    <image class="sc2" catchtap="handleSaveTap" mode="scaleToFill" src="../../images/sc2.png"></image>
-    <button open-type="share"  class="zf"id="{{id1}}" > <image class="zf" catchtap="handlezfTap" mode="scaleToFill" src="../../images/zf.png"></image>  </button>
+
+    <view class="ok">
+        <button class='myButton1'  bindtap="next">认识</button>
+        <button class='myButton2' bindtap='mohu'>模糊</button>
+        <button class='myButton3' bindtap='forget'>忘记</button>
+    </view>
+</view>
+
+
+<view class="body">
+    <view wx:if="{{more}}">
+  <import src="itemtpl"/>
+  <view class="liju_content">
+      <block wx:for="{{defen}}">
+          <template is="more-item" data="{{item}}"/>
+      </block>
+  </view>
+  </view>
+
+      <image class="sc2" style="width: 20px; height: 20px; background-color:rgb(151, 212, 162);" catchtap="handleSaveTap" mode="scaleToFill" src="../../images/sc2.png"></image>
+      <button open-type="share" style="width: 20px; height: 20px; background-color:rgb(151, 212, 162);" class="zf" id="{{id1}}" > <image class="zf" style="width: 20px; height: 20px; background-color:rgb(151, 212, 162);" catchtap="handlezfTap" mode="scaleToFill" src="../../images/zf.png"></image>  </button>
+  </view>
 </view>
 </view>
+
+
+
+
 <view wx:if="{{cpt}}" class="complete_bg">
-<view class="complete" >
-   <view class="congratulate">太棒啦！今天的单词都背完了！</view>
-   <view class="share"  bindtap="test"><view class="share_word">测试</view></view>
-   <button  open-type="share" class="challenge" id="{{id2}}"><view class="share_word">分享</view></button>
+  <view class="complete" >
+      <view class="congratulate">太棒啦！今天的单词都背完了！</view>
+      <view class="share"  bindtap="test"><view class="share_word">测试</view>
+      </view>
+        <button  open-type="share" class="challenge" id="{{id2}}">
+           <view class="share_word">分享</view>
+        </button>
+       </view>
 </view>
-</view>
-<view wx:if="{{!(showNot)&&!(cpt)}}" class="content">
-   <view class="button-miss" catchtap="show">
-      <text class="word-miss" catchtap="show">不认识</text>
+
+
+<view wx:if="{{!(showNot)&&!(cpt)}}" class="content" bindtap='show'>
+       <view class='detect'>
+        <view>大声把英文发音和中文解释说出口！</view>
+        <view style='color: #83c41a;;'>点击屏幕查看答案</view>
     </view>
-    <view class="button-next" bindtap="next" id="1" >
-      <text class="word-next" >下一个</text>
-    </view>
+  <view class='ok'>
+     <view class='bottomline'>{{bottomline}}</view>
+  </view>
 </view>
+
 

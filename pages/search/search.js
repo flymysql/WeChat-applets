@@ -1,6 +1,6 @@
 //index.js
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
+///var qcloud = require('../../vendor/wafer2-client-sdk/index')
+//var config = require('../../config')
 var util = require('../../utils/util.js')
 const app = getApp();
 Page({
@@ -12,6 +12,8 @@ Page({
     loadNumber: 0//全球排名数据加载次数
   },
   onLoad(opt) {
+
+    /*
     app.appData.fromClickId = opt.currentClickId
     app.upDateUser_networkFromClickId = require('../../utils/upDateUser_networkFromClickId.js').upDateUser_networkFromClickId
     wx.showShareMenu({
@@ -23,10 +25,13 @@ Page({
     })
     app.pageGetUserInfo(this)
     this.getRankGlobalData();
+    */
   },
   onShow() {
 
   },
+
+  /*
   onShareAppMessage(res) {
     const that = this;
     return {
@@ -38,12 +43,15 @@ Page({
       }
     }
   },
+
+  */
   onReachBottom: function () {//下拉加载
     const that = this
     if (that.data.currentTab) {
       that.getRankGlobalData()
     }
   },
+  /*
   getRankGlobalData() {//加载全球排名的数据
     const that = this
     qcloud.request({
@@ -99,5 +107,6 @@ Page({
       url: '../detail-word/detail-word',
     })
   }
+  */
 
 })

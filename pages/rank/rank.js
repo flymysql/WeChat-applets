@@ -1,5 +1,5 @@
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
+//var qcloud = require('../../vendor/wafer2-client-sdk/index')
+//var config = require('../../config')
 var util = require('../../utils/util.js')
 const app = getApp();
 Page({
@@ -25,6 +25,8 @@ Page({
       that.getRankGlobalData()
     }
   },
+
+  /*
   getRankGlobalData() {//加载全球排名的数据
     const that = this
     qcloud.request({
@@ -70,4 +72,5 @@ Page({
       currentTab: e.target.dataset.current,
     })
   },
+  */
 })

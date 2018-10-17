@@ -1,7 +1,7 @@
 // pages/test/test.js
 var list = require('../../data/vocabulary.js')
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
+//var qcloud = require('../../vendor/wafer2-client-sdk/index')
+//var config = require('../../config')
 var util = require('../../utils/util.js')
 const app = getApp();
 
@@ -198,6 +198,7 @@ Page({
     this.search()
   },
   set_score(score) {
+    /*
     var openId = this.data.openId
     if (openId) {
       qcloud.request({
@@ -216,8 +217,10 @@ Page({
         },
       });
     }
+    */
   },
   getScore(openId) {
+    /*
     if (openId) {
       qcloud.request({
         login: false,
@@ -235,7 +238,9 @@ Page({
           util.showModel('请求失败', error);
         },
       });
+      
     }
+    */
   },
   onReachBottom: function () {//下拉加载
     const that = this
@@ -244,6 +249,7 @@ Page({
     }
   },
   getRankGlobalData() {//加载全球排名的数据
+  /*
     const that = this
     qcloud.request({
       login: false,
@@ -262,6 +268,7 @@ Page({
         console.log('request fail', error);
       },
     })
+    */
   },
   
 })

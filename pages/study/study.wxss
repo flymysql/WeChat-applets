@@ -4,7 +4,7 @@ src: url('/assets/font/chalkboard.ttf'),
 }
 page{
   height: 100%;
-  background-color: wheat;
+  font-family: Arial;
 }
 .detail_card{
 
@@ -12,18 +12,28 @@ page{
    flex-direction: column;
    width: 100%;
    height: 100%;
-   padding: 20px;
-   background-color: wheat;
+   background-color: #fff;
+}
 
+.head{
+  background-color: rgb(151, 212, 162);
+  padding: 20px;
+  border-bottom: 5px solid #8F8F8F; 
+}
+.body{
+  background-color: #fff;
+  padding-left: 20px;
+  height: 100%;
 }
 .detail_word{
   font-weight: 900;
   font-size: 35px;
   font-family: Chalkboard;
   padding-bottom: 30rpx;
+  
 }
 .detail_pron{
-  font-size: 15px;
+  font-size: 14px;
   font-family: Chalkboard;
   padding-bottom: 30rpx;
   padding-right: 20px;
@@ -35,18 +45,25 @@ page{
   font-size: 14px;
   font-family: Chalkboard;
   padding-bottom: 30rpx;
-  margin-right: 40px;
+  
 }
 .liju_content{
-  width: 78%;
+  width: 85%;
+  font-size: 14px;
+  font-family: Arial;
+  background-color: #fff;
 }
 .detail_defin{
-  font-size: 15px;
-  font-family: 微软雅黑，黑体;
-  padding-left: 20px;
+  font-size: 14px;
+ 
   display: inline-block;
   flex-direction: row;
+  font-family: Arial;
   flex-wrap: wrap;
+}
+.detail_trans{
+  font-size: 14px;
+  font-family: Arial;
 }
 .detail_defin_content{
   display: flex;
@@ -55,17 +72,18 @@ page{
 
 .job_day{
    width: 100%;
-   height: 380rpx;
+   height: 280rpx;
+   border-bottom: 5rpx solid #8F8F8F;
    display: flex;
    flex-direction: column;
-   background-color:white;
+   background-color:rgb(151, 212, 162);
   align-items: center;
   box-sizing: border-box;
 
 }
 .day_num{
    width: 100%;
-   margin-top: 70px;
+   margin-top: 20px;
    font-size: 90rpx;
    text-align: center;
    color: #000;
@@ -73,9 +91,22 @@ page{
    font-weight: 800;
 }
 
+.detect{
+  height: 80%;
+  background-color: #fff;
+  font-family: Arial;
+  font-size: 16px;
+  padding-top: 300rpx;
+  color: #555;
+  font-weight: 600;
+}
+
 .content{
-   height:795rpx;
-   background-color: white;
+   height: 80%;
+   background-color: #fff;
+   align-items: center;
+   align-content: center;
+   text-align: center;
 }
 
 
@@ -166,24 +197,32 @@ page{
 
 }
 .ok{
-  margin-left: -45rpx;
   font-size: 60rpx;
   line-height: 90rpx;
   text-align: center;
+  align-content: center;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  color: red;
   position: fixed;
-  left: 50%;
-  bottom: 60rpx;
+  left: 0px;
+  bottom: 0px;
   display: flex;
-  flex-direction: column;
-  border-radius: 50%;
-  width: 120rpx;
-  height: 120rpx;
-  border: 1rpx solid red;
+  flex-direction: row;
+  width: 100%;
+  height: 40px;
+  border: 1rpx solid rgb(151, 212, 162);
   align-items: center;
   background-color: white;
 }
+
+.bottomline{
+  font-family: Arial;
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+  align-content: center;
+  padding-left: 20px;
+}
+
 .ok_word{
     margin: auto;
   font-family: Songti TC;
@@ -282,3 +321,52 @@ page{
   color: black;
   font-weight: 800
 }
+.myButton1 {
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	border-radius:6px;
+  background-color: #b8e356;
+	border:1px solid #83c41a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+  width: 30%;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #86ae47;
+}
+
+.myButton2 {
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	border-radius:6px;
+  background-color: #ffc477;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+  width: 30%;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #cc9f52;
+}
+
+.myButton3 {
+	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	border-radius:6px;
+  background-color: #fc8d83;
+	border:1px solid #d83526;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+  width: 30%;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+
+

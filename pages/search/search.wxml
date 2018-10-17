@@ -1,18 +1,10 @@
 <view class="search-content">
     <view class="word-input" bindtap="searchinput">在此输入单词或句子</view>
-    <view class="test_choice">
-         <view  class='person-infor'>
-    <image src='{{userInfo.avatarUrl}}' class='avatarUrl'></image>
-    <view style='text-align:center;color:#000;'>
-      <view>{{userInfo.nickName}}</view>
-      <view>得分:{{score}}</view>
-    </view>
-    <image src='../../imgs/entry_qr.svg' class='qr' bindtap='get_qr_address'></image> <!--注意不要跳转到web_view-->
-  </view>
-    </view>
+    
 </view>
-<view >
 
+<view >
+  <!-->
   <view class='tab'>
    <view class="{{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">世界排名</view>
     <view class="{{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">好友排名</view>
@@ -60,5 +52,6 @@
 <view class='button-test' bindtap='word_test'>
   <view class='word-test'>挑战</view>
 </view>
+-->
 </view>
 

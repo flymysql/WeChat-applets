@@ -1,5 +1,3 @@
-
-
 const app = getApp()
 Page({
   data: {
@@ -11,7 +9,8 @@ Page({
    id2:"我在小鸡单词完成了今天的所有单词！",
    id3:3,
    id4:4,
-   today_num:0
+   today_num:0,
+   bottomline:""
   },
   onLoad: function (options) {
     this.setData({ 
@@ -42,14 +41,6 @@ Page({
       showNot: true,
       more: false
     })
-    var today_task = wx.getStorageSync('task')
-    var length = today_task.length
-    today_task.push(this.data.counter)
-    today_task.splice(length / 2, 0, this.data.counter)
-    wx.setStorage({
-      key: "task",
-      data: today_task
-    })
   },
   onShareAppMessage: function (options) {
     return{
@@ -61,14 +52,12 @@ Page({
     }
     
   },
-  next:function(e) {
-   console.log(e)
-   if (e.currentTarget.id ){
+  next:function() {
+
      wx.setStorage({
        key: this.data.time,
        data: wx.getStorageSync(this.data.time)+1
      })
-   }
     var today_task = wx.getStorageSync('task')
     var length = today_task.length
         if (length > 0) {
@@ -79,13 +68,50 @@ Page({
            key: "task",
            data: today_task
          })
-
          this.search(n)
      }
      else{
          this.complete()
        }
        
+  },
+
+  forget:function(){
+    var today_task = wx.getStorageSync('task')
+    var length = today_task.length
+    today_task.push(this.data.counter)
+    today_task.splice(length / 2, 0, this.data.counter)
+    wx.setStorage({
+      key: "task",
+      data: today_task
+    })
+    var n = today_task.shift()
+    this.setData({ showNot: false })
+    this.setData({ counter: n })
+    wx.setStorage({
+      key: "task",
+      data: today_task
+    })
+    this.search(n)
+  },
+
+  mohu:function(){
+    var today_task = wx.getStorageSync('task')
+    var length = today_task.length
+    today_task.push(this.data.counter)
+    today_task.splice(length / 2, 0 ,this.data.counter)
+    wx.setStorage({
+      key: "task",
+      data: today_task
+    })
+    var n = today_task.shift()
+    this.setData({ showNot: false })
+    this.setData({ counter: n })
+    wx.setStorage({
+      key: "task",
+      data: today_task
+    })
+    this.search(n)
   },
 
   search:function (n) {
@@ -132,7 +158,8 @@ Page({
   },
   moredefen:function()
   {
-    this.setData({more:true})
+    
+    this.setData({more:!(this.data.more)})
   },
   set_time: function (date) {
     var month = date.getMonth() + 1
@@ -177,8 +204,8 @@ Page({
         console.log(res)
         that.setData({ 
           defen: [res.data.data[0], res.data.data[1], res.data.data[3], res.data.data[4]]
-  
         })
+        that.setData({ bottomline: res.data.data[0].translation})
       },
       fail: function () {
       },

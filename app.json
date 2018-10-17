@@ -12,9 +12,7 @@
     "pages/about/about",
     "pages/my_word/my_word",
     "pages/suggestion/suggestion",
-    "pages/sql/sql",
-
-        "pages/rank/rank"
+    "pages/rank/rank"
  
   ],
   
@@ -33,17 +31,19 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/job/job",
+        "pagePath": "pages/study/study",
         "text": "首页",
         "iconPath": "images/home2.png",
         "selectedIconPath": "images/home.png"
       },
+   
       {
-        "pagePath": "pages/search/search",
-        "text": "查单词",
+        "pagePath": "pages/job/job",
+        "text": "选词",
         "iconPath": "images/search2.png",
         "selectedIconPath": "images/search.png"
       },
+    
       {
         "pagePath": "pages/me/me",
         "text": "我的",

@@ -1,7 +1,9 @@
 
 
-<template name="more-item">
+   <template name="more-item">
 <view style="padding-bottom:20px;"></view>
     <view class="detail_defin"  >{{item.first}}<view style="color:red;display:inline;">　{{item.mid}}　</view>{{item.last}}</view>
-     <view class="detail_defin">{{item.translation}}</view>
+     <view class="detail_trans">{{item.translation}}</view>
 </template>
+
+

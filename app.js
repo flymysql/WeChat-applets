@@ -1,40 +1,26 @@
 //app.js
 
-var qcloud = require('./vendor/wafer2-client-sdk/index');
-var config = require('./config');
+//var qcloud = require('./vendor/wafer2-client-sdk/index');
+//var config = require('./config');
 var util = require('./utils/util.js')
 
 App({
   appData: {
-    appId: config.service.appId,
-    baseUrl: `${config.service.host}/weapp/`,
-    tunnelStatus: 'close',//统一管理唯一的信道连接的状态：connect、close、reconnecting、reconnect、error
-    friendsFightingRoom: undefined,//好友对战时创建的唯一房间名,作为好友匹配的标识
+    //appId: config.service.appId,
+    //baseUrl: `${config.service.host}/weapp/`,
+   // tunnelStatus: 'close',//统一管理唯一的信道连接的状态：connect、close、reconnecting、reconnect、error
+   // friendsFightingRoom: undefined,//好友对战时创建的唯一房间名,作为好友匹配的标识
   },
   onLaunch(opt) {
     this.appData.opt = opt
-    qcloud.setLoginUrl(config.service.loginUrl);  //设置登录地址
-    this.doLogin();
+   // qcloud.setLoginUrl(config.service.loginUrl);  //设置登录地址
+   // this.doLogin();
   },
   onShow(opt) {
     this.storeUser_network(opt)//每次打开程序都启动存储用户关系表
   },
-  doLogin() { //登录
-    let that = this
-    util.showBusy('正在登录');
-    qcloud.login({
-      success(result) {//此处的result竟然不包含openid,所以res取缓存中的数据
-        util.showSuccess('登录成功')
-        let res = wx.getStorageSync('user_info_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A');
-        if (that.userInfoReadyCallback) {
-          that.userInfoReadyCallback(res)
-        }
-      },
-      fail(error) {
-        util.showModel('登录失败', error);
-      }
-    });
-  },
+  
+  /*
   pageGetUserInfo(page, openIdReadyCallback) { //在page中获取用户信息
     const userInfo = wx.getStorageSync('user_info_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A')
     if (userInfo) {
@@ -112,6 +98,7 @@ App({
     })
 
   },
+  */
 
   /******************用户关系点击表操作******************/
   //注意1：所有从分享中启动的页面onLoad都添加：  
@@ -162,6 +149,8 @@ App({
         }
       })
     }
+
+    /*
     function store(that, userInfo, opt, GId = '') {  //参数内要写that：that作为一个对象不能凭空产生
       let data = {
         //clickId:自动生成的数据,
@@ -188,6 +177,7 @@ App({
         }
       });
     }
+    */
   },
   
 })

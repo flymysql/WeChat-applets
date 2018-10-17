@@ -30,13 +30,14 @@
 <view class="star_study" bindtap="star_study">
   <view class="star">start</view>
 </view>
+<!-->
 <view class="bookline">
    <view bindtap="test1_card" class="book1">
    <view style="text-size:30rpx;  font-weight:700;">英汉测试</view>
    </view>
    <view bindtap="test2_card" class="book2"> <view style="text-size:30rpx;  font-weight:700;">汉英测试</view></view>
 </view>
-
+-->
 
 
 </view>
