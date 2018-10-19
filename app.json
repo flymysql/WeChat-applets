@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/job/job",
     "pages/study/study",
+    "pages/job/job",
     "pages/search/search",
     "pages/detail-word/detail-word",
     "pages/me/me",

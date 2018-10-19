@@ -1,3 +1,4 @@
+
 @font-face {
 font-family: Chalkboard;
 src: url('/assets/font/chalkboard.ttf'),
@@ -16,7 +17,7 @@ page{
 }
 
 .head{
-  background-color: rgb(151, 212, 162);
+  background: linear-gradient(#4d9ca8 ,#a5dcd9);
   padding: 20px;
   border-bottom: 5px solid #8F8F8F; 
 }
@@ -72,19 +73,19 @@ page{
 
 .job_day{
    width: 100%;
-   height: 280rpx;
+   height: 18%;
    border-bottom: 5rpx solid #8F8F8F;
    display: flex;
    flex-direction: column;
-   background-color:rgb(151, 212, 162);
+   background: linear-gradient(	#4d9ca8 ,#a5dcd9);
   align-items: center;
   box-sizing: border-box;
 
 }
 .day_num{
    width: 100%;
-   margin-top: 20px;
-   font-size: 90rpx;
+   margin-top: 8px;
+   font-size: 70rpx;
    text-align: center;
    color: #000;
   font-family: Chalkboard;
@@ -203,15 +204,16 @@ page{
   align-content: center;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   position: fixed;
+  bottom: 2px;
   left: 0px;
-  bottom: 0px;
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 40px;
-  border: 1rpx solid rgb(151, 212, 162);
+  border: 2rpx solid rgb(151, 212, 162);
   align-items: center;
   background-color: white;
+  
 }
 
 .bottomline{
@@ -219,8 +221,8 @@ page{
   font-size: 14px;
   color: #555;
   font-weight: 500;
-  align-content: center;
-  padding-left: 20px;
+  padding-left: 10px;
+  height: 35px;
 }
 
 .ok_word{

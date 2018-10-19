@@ -2,8 +2,6 @@
 <view class="page">
   <view class="user-card">
     <view class="user-card__info">
-      <image class="user-card__head" src="{{ userInfo.avatarUrl }}"></image>
-      <text class="user-card__name">{{userInfo.nickName}}</text>
       
     </view>
     <view class="user-card__links">

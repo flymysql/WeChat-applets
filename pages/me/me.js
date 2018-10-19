@@ -20,11 +20,20 @@ Page({
         have_done: wx.getStorageSync(time),
         word_num: wx.getStorageSync('word_num'),
         day_task: wx.getStorageSync('day_task'),
-        userInfo: wx.getStorageSync('user_info_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A')
       })
 
 
   },
+
+  getUserInfo: function (e) {
+    app.globalData.userInfo = e.detail.userInfo
+    Bmob.User.upInfo(e.detail.userInfo)
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+    
   set_time: function (date) {
     var month = date.getMonth() + 1
     var day = date.getDate()

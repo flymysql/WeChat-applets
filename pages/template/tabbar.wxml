@@ -1,0 +1,39 @@
+<!--
+    带上 jh-前缀：避免样式冲突
+ -->
+
+<!-- 组件：整个的tabbar -->
+<template name="tab-bar">
+<!-- 默认在底部 -->
+  <view class="jh-tab-bar">
+    <view class="jh-tab-item"
+        wx:for="{{ jhDataForTabbar }}"
+        wx:for-item="tabItem"
+        wx:for-index="index"
+        wx:key="sTitle">
+        <!-- 引入单个的tab -->
+      <template is="jh-tab-item" data="{{ tabItem }}"></template>
+    </view>
+  </view>
+</template>
+
+<!-- 组件：单个的tab按钮 -->
+<template name="jh-tab-item">
+  <view class="jh-tab-content"
+    bindtap="onTabbarItemTap"
+    data-key="{{ tabItem.sTitle }}">
+    <!-- icon -->
+    <view class="jh-tab-icon">
+        <image src="{{ tabItem.sIconUrl }}"></image>
+    </view>
+    <!-- 标题 -->
+    <view class="jh-tab-title">
+      <text>{{ tabItem.sTitle }}</text>
+    </view>
+    <!-- 右上角 红色数字 -->
+    <view class="jh-tab-bubble" wx:if="{{ tabItem.iCount > 0}}">
+        <text class="jh-tab-count">{{ tabItem.iCount < 100? tabItem.iCount: 99 }}</text>
+    </view>
+  </view>
+
+</template>

@@ -1,24 +1,39 @@
 
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-   time:""
+   time:"",
+   voclist:[],
+   slist:0,
+   choice:false,
+   book_list:[],
+    id1: "kaoyan",
+    id2: "suiji",
+    id3: "cet4",
+    id4: "cet6",
+    id11: "kaoyan_import",
+    id12: "cet4_import",
+    id13: "cet6_import",
+    id14: "zy8",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({ voclist: [{ "name": "cet4", "show": "false" }, { "name": "cet6", "show": "false" }]})
+    
     var time = this.set_time(new Date())
     this.setData({
-       have_done: wx.getStorageSync('have_done'),
+        have_done: wx.getStorageSync('have_done'),
         time: time,
         day_num: wx.getStorageSync('day_num')
         })
+
+    /*
     if (time=== wx.getStorageSync('day')){
     
     }
@@ -27,10 +42,7 @@ Page({
         key: "day",
         data: time
       })
-      wx.setStorage({
-        key: time,
-        data: 0
-      })
+      
       if (wx.getStorageSync('have_done')){
         var num = wx.getStorageSync('word_num')
         var day_task = wx.getStorageSync('day_task')
@@ -54,6 +66,8 @@ Page({
 
 
     }
+
+    */
     this.setData({
       new_word: Math.floor(Math.random() * 20) + 1,
       today_word: wx.getStorageSync('day_task'),
@@ -61,6 +75,7 @@ Page({
       my_word: wx.getStorageSync('word_num')
     })
 
+   
     if (!wx.getStorageSync('cet4')[1]){
       var cet4 = require('../../data/cet4.js')
       var cet4_import = require('../../data/cet4_import.js')
@@ -103,6 +118,7 @@ Page({
         data: zy8.wordList
       })
     }
+    
   },
 
   /**
@@ -111,7 +127,12 @@ Page({
   onReady: function () {
     
   },
-
+  
+  showlist:function(index){
+    this.setData({
+      slist:index
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -129,14 +150,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+    this.sort_wordlist();
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+    this.sort_wordlist();
   },
 
   /**
@@ -161,7 +182,6 @@ Page({
   },
 
   star_study:function(){
-
     wx.navigateTo({
       url: '../study/study'
     })
@@ -177,11 +197,7 @@ Page({
     return [year, month, day].map(formatNumber).join('/')
   
   },
-  choice(){
-    wx.navigateTo({
-      url: '../choice/choice',
-    })
-  },
+
   test1_card(){
     wx.navigateTo({
       url: '../test/test',
@@ -192,4 +208,78 @@ Page({
       url: '../test/test',
     })
   },
+
+  choice_book(e) {
+    var book = e.currentTarget.id;
+    if(book!='no')
+    {
+      wx.setStorage({
+        key: "book",
+        data: book
+      })
+      this.setData({
+        choice: true,
+        book_list: wx.getStorageSync(book)
+      })
+    }
+    else{
+      this.setData({ choice: false})
+      this.sort_wordlist();
+
+    }
+    
+  },
+
+  choice_word(e){
+    var add = e.currentTarget.id;
+    var word={"word":add,"ease":0.5,"day":0};
+    var wordlist=wx.getStorageSync("word_list");
+    wordlist.push(word);
+    wx.setStorageSync("word_list", wordlist);
+    var list = this.data.book_list;
+    var len=list.length;
+      var i=0;
+      for (var i = 0; i < len; i++) {
+        if (list[i] == add) break;
+      }
+    list.splice(i, 1);
+    var book = wx.getStorageSync("book");
+    wx.setStorageSync(book, list);
+    this.setData({ book_list: list });
+  },
+
+  sort_wordlist() {
+    var last_list = wx.getStorageSync("word_list");
+    var len2 = last_list.length;
+    for (var i = 0; i < len2; i++) {
+      for (var j = i + 1; j < len2; j++) {
+        if (last_list[j].ease < last_list[i].ease) {
+          var temp = last_list[j];
+          last_list[j] = last_list[i];
+          last_list[i] = temp;
+        }
+        else{
+          if (last_list[j].ease === last_list[i].ease && last_list[j].day > last_list[i].day){
+            var temp = last_list[j];
+            last_list[j] = last_list[i];
+            last_list[i] = temp;
+          }
+        }
+      }
+    }
+    wx.setStorageSync("word_list", last_list);
+
+    var day_num = wx.getStorageSync("day_task");
+    var today_list = [];
+    for (var i = 0, k = 0; i < len2; i++) {
+      if (k === day_num || (last_list[i].ease > 0.5 && last_list[i].day > 3)) break;
+      today_list[k++] = last_list[i];
+    }
+    wx.setStorage({
+      key: 'today_word',
+      data: today_list,
+    })
+    
+  }
+  
 })

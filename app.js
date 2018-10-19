@@ -1,8 +1,9 @@
 //app.js
-
+var Bmob = require('/dist/Bmob-1.6.4.min.js');
 //var qcloud = require('./vendor/wafer2-client-sdk/index');
 //var config = require('./config');
 var util = require('./utils/util.js')
+Bmob.initialize("1f5588b50881978b44ccaf8edd435221", "132a4ff6818ca417ccf6c4c14c466081");
 
 App({
   appData: {
@@ -15,11 +16,65 @@ App({
     this.appData.opt = opt
    // qcloud.setLoginUrl(config.service.loginUrl);  //设置登录地址
    // this.doLogin();
+    Bmob.User.auth().then(res => {
+      console.log(res)
+      console.log('一键登陆成功')
+
+    }).catch(err => {
+      console.log(err)
+    });
+
+    if(!wx.getStorageSync("word_list")){
+      wx.setStorage({
+        key: 'word_list',
+        data: [{"word":"test","ease":0.4,"day":0}],
+      })
+      wx.setStorage({
+        key: 'day_task',
+        data: 5,
+      })
+    }
+
+    /*
+    var wordlist=wx.getStorageSync("word_list");
+    var len=wordlist.length;
+    var day_num=wx.getStorageSync("day_task");
+    var today_list=[];
+    for(var i=0,k=0;i<len;i++)
+    {
+      if (k === day_num || (wordlist[i].ease > 0.5 && wordlist[i].day <3 )) break;
+      today_list[k++] = wordlist[i];
+    }
+    wx.setStorage({
+      key: 'today_word',
+      data: today_list,
+    })
+    if(!wx.getStorageSync("task")){
+      var nn = [];
+      var bb = [];
+      for (var i = 0; i < k; i++) {
+        nn[i] = i;
+        bb[i] = { "rem": 0, "mohu": 0, "forget": 0 }
+      }
+      wx.setStorage({
+        key: 'task',
+        data: nn,
+      })
+      wx.setStorage({
+        key: 'task_detail',
+        data: bb,
+      })
+    }
+    */
+    
   },
+
+
   onShow(opt) {
     this.storeUser_network(opt)//每次打开程序都启动存储用户关系表
   },
   
+ 
   /*
   pageGetUserInfo(page, openIdReadyCallback) { //在page中获取用户信息
     const userInfo = wx.getStorageSync('user_info_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A')

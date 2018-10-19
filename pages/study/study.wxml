@@ -71,7 +71,7 @@
 <view wx:if="{{cpt}}" class="complete_bg">
   <view class="complete" >
       <view class="congratulate">太棒啦！今天的单词都背完了！</view>
-      <view class="share"  bindtap="test"><view class="share_word">测试</view>
+      <view class="share"  bindtap="tags"><view class="share_word">盖章</view>
       </view>
         <button  open-type="share" class="challenge" id="{{id2}}">
            <view class="share_word">分享</view>
@@ -79,6 +79,12 @@
        </view>
 </view>
 
+<view wx:if="{{goto_choice}}" class='content' bindtap='goto_choice'>
+    <view class='detect'>
+        <view>你今天需要选择23个新单词！</view>
+        <view style='color: #83c41a;;'>点击选词</view>
+    </view>
+</view>
 
 <view wx:if="{{!(showNot)&&!(cpt)}}" class="content" bindtap='show'>
        <view class='detect'>
@@ -89,5 +95,6 @@
      <view class='bottomline'>{{bottomline}}</view>
   </view>
 </view>
+
 
 
