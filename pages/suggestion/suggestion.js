@@ -1,4 +1,6 @@
 // pages/suggestion/suggestion.js
+var Bmob = require('../../dist/Bmob-1.6.4.min.js');
+Bmob.initialize("你的appid", "你的secret id");
 
 Page({
 
@@ -70,6 +72,14 @@ Page({
   },
   ok(){
     wx.showToast({ title: '提交成功' })
+    const query = Bmob.Query('suggestion');
+    query.set("content", this.data.voteTitle)
+    query.set("name", wx.getStorageSync("userInfo").nickName)
+    query.save().then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
 })

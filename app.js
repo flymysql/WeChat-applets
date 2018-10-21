@@ -3,9 +3,12 @@ var Bmob = require('/dist/Bmob-1.6.4.min.js');
 //var qcloud = require('./vendor/wafer2-client-sdk/index');
 //var config = require('./config');
 var util = require('./utils/util.js')
-Bmob.initialize("1f5588b50881978b44ccaf8edd435221", "132a4ff6818ca417ccf6c4c14c466081");
+Bmob.initialize("你的appid", "你的secret id");
 
 App({
+  globalData:{
+    userInfo:[]
+  },
   appData: {
     //appId: config.service.appId,
     //baseUrl: `${config.service.host}/weapp/`,
@@ -18,20 +21,50 @@ App({
    // this.doLogin();
     Bmob.User.auth().then(res => {
       console.log(res)
+      const query = Bmob.Query('_User');
+      query.get(res.objectId).then(res => {
+        console.log(res)
+        wx.setStorage({
+          key: 'data_objectid',
+          data: res.data_objectid,
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+      wx.setStorage({
+        key: 'usr_objectId',
+        data: res.objectId,
+      })
+      
       console.log('一键登陆成功')
 
     }).catch(err => {
       console.log(err)
     });
 
-    if(!wx.getStorageSync("word_list")){
+    this.globalData.userInfo=wx.getStorageSync("userInfo")
+    if(!wx.getStorageSync("word_list")&&!wx.getStorageSync("all_detail")){
+      wx.setStorage({
+        key: 'all_detail',
+        data: [],
+      })
+
       wx.setStorage({
         key: 'word_list',
-        data: [{"word":"test","ease":0.4,"day":0}],
+        data: [],
       })
       wx.setStorage({
         key: 'day_task',
-        data: 5,
+        data: 30,
+      })
+      wx.setStorage({
+        key: "my_word_num",
+        data: 1000,
+      })
+
+      wx.setStorage({
+        key: "free_word_num",
+        data: 1000,
       })
     }
 

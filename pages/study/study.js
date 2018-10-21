@@ -1,159 +1,241 @@
+var wxCharts = require('../../utils/wxcharts.js');
+
+var app = getApp();
+var pieChart = null;
 
 Page({
   data: {
-   time:"",
-   cpt:false,
-   counter:{},
-   today_new_word:0,
-   dis:false,
-   id1:"我在小鸡单词看到这个单词觉得很有趣，一起来学习吧！",
-   id2:"我在小鸡单词完成了今天的所有单词！",
-   id3:3,
-   id4:4,
-   today_num:0,
-   today_word:[],
-   bottomline:"",
-   task_detail:[]
+    time: "",
+    cpt: false,
+    counter: {},
+    today_new_word: 0,
+    dis: false,
+    id1: "我在小鸡单词看到这个单词觉得很有趣，一起来学习吧！",
+    id2: "我在小鸡单词完成了今天的所有单词！",
+    id3: 3,
+    id4: 4,
+    today_num: 0,
+    today_word: [],
+    bottomline: "",
+    task_detail: {}
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
-      time: this.set_time(new Date()),           //日期
-      day_num: wx.getStorageSync('day_task'),    //每天任务量
-      })
-    if(this.data.time!=wx.getStorageSync("day")){
+      time: this.set_time(new Date()), //日期
+      day_num: wx.getStorageSync('day_task'), //每天任务量
+      today_detail:wx.getStorageSync("today_detail")
+    })
+
+    if (this.data.time != wx.getStorageSync("day")) {
       this.new_day();
     }
     this.setData({
-      book: wx.getStorageSync('book'),           //
+      book: wx.getStorageSync('book'), //
       today_word: wx.getStorageSync('today_word'),
-      task_detail: wx.getStorageSync("task_detail")
+      task_detail: wx.getStorageSync("task_detail"),
+      today_new_num: wx.getStorageSync("today_new_num")
     })
 
-    if(this.data.today_word.length<this.data.day_num)
-    {
-        this.setData({
-          goto_choice:true,
-          bottomline:"在词库里挑选自己每天要背的单词！"
-          })
-    }
-    else{
+    if (this.data.today_word.length < this.data.day_num) {
+
+      this.setData({
+        goto_choice: true,
+        bottomline: "在词库里挑选自己每天要背的单词！"
+      })
+    } else {
       var today_task = wx.getStorageSync('task')
       var length = today_task.length
       if (length > 0) {
         var n = today_task[0];
-        this.setData({ showNot: false })
-        this.setData({ counter: n })
-        wx.setStorage({
-          key: "task",
-          data: today_task
+        this.setData({
+          showNot: false
         })
+        this.setData({
+          counter: n
+        })
+        
         this.search(this.data.today_word[n].word)
       } else {
-        if(!wx.getStorageSync("first_login")) this.complete()
+        if (!wx.getStorageSync("first_login")) this.complete()
       }
-    }       
+    }
+    
+    if (!wx.getStorageSync("task_detail")){
+      var nn = [];
+      var bb = [];
+      var day = wx.getStorageSync("day_task")
+      for (var i = 0; i < day; i++) {
+        nn[i] = i;
+        bb[i] = {
+          "rem": 0,
+          "mohu": 0,
+          "forget": 0
+        }
+      }
+      wx.setStorage({
+        key: 'task',
+        data: nn,
+      })
+      wx.setStorage({
+        key: 'task_detail',
+        data: bb,
+      })
+    }
+    
   },
 
-  onShow: function () {
-  
+  onReady: function () {
+  },
+
+  onShow: function() {
+
     this.setData({
       today_word: wx.getStorageSync('today_word'),
-      task_detail: wx.getStorageSync("task_detail")
+      task_detail: wx.getStorageSync("task_detail"),
+      today_detail:wx.getStorageSync("today_detail")
     })
-  
-    if (this.data.today_word.length < this.data.day_num ) {
-      this.setData({ goto_choice: true })
-    }
-    else {
-      this.setData({goto_choice:false})
+
+    if (this.data.today_word.length < this.data.day_num) {
+      this.setData({
+        goto_choice: true
+      })
+    } else {
+      this.setData({
+        goto_choice: false
+      })
+      
       
       var today_task = wx.getStorageSync('task')
       var length = today_task.length
       if (length > 0) {
         var n = today_task[0];
-        this.setData({ showNot: false })
-        this.setData({ counter: n })
-        wx.setStorage({
-          key: "task",
-          data: today_task
+        this.setData({
+          showNot: false
+        })
+        this.setData({
+          counter: n
         })
         this.search(this.data.today_word[n].word)
       } else {
         this.complete()
       }
-     
+
     }
-    
+
   },
 
 
-  onHide:function() {
+  onHide: function() {
     wx.setStorageSync("task_detail", this.data.task_detail);
+    wx.setStorage({
+      key: 'today_detail',
+      data: this.data.today_detail,
+    })
   },
 
-  onUnload:function() {
+  onUnload: function() {
     wx.setStorageSync("task_detail", this.data.task_detail);
+    wx.setStorage({
+      key: 'today_detail',
+      data: this.data.today_detail,
+    })
   },
 
-  show: function () {
-
+  show: function() {
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = this.data.pron_audio.uk[0]
+    innerAudioContext.onPlay(() => {})
+    innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
     this.setData({
       showNot: true,
       more: false
     })
   },
-  onShareAppMessage: function (options) {
-    return{
-      title:options.target.id,
-      path:'/pages/job/job',
-      success:function(res){
-        console.log(res)
+
+  onShareAppMessage: function(options) {
+    return {
+      title: options.target.id,
+      path: '/pages/study/study',
+      success: function(res) {
+        wx.setStorage({
+          key: 'my_word_num',
+          data: wx.getStorageSync("my_word_num")+5,
+        })
+        wx.setStorage({
+          key: 'free_word_num',
+          data: wx.getStorageSync("free_word_num") + 5,
+        })
       }
     }
-    
+
   },
-  next:function() {
-    var temp=this.data.counter;
-    this.data.task_detail[temp].rem++;
-    if (this.data.task_detail[temp].rem >= this.data.task_detail[temp].forget * 4 + this.data.task_detail[temp].mohu*3){
+
+  next: function() {
+    var temp = this.data.counter;
+    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0){
+      this.data.today_detail.rem++;
+    }
+      this.data.task_detail[temp].rem++;
+    if (this.data.task_detail[temp].rem >= this.data.task_detail[temp].forget * 3 + this.data.task_detail[temp].mohu * 2) {
       wx.setStorage({
         key: this.data.time,
         data: wx.getStorageSync(this.data.time) + 1
       })
     }
     var today_task = wx.getStorageSync('task')
+    today_task.shift();
     var length = today_task.length
-        if (length > 0) {
-          var n = today_task.shift()
-        this.setData({ showNot: false})
-         this.setData({counter:n})
-         wx.setStorage({
-           key: "task",
-           data: today_task
-         })
-          this.search(this.data.today_word[n].word)
-     }
-     else{
-         this.complete()
-       }
-       
+    if (length > 0) {
+      var n = today_task[0];
+      this.setData({
+        showNot: false
+      })
+      this.setData({
+        counter: n
+      })
+      wx.setStorage({
+        key: "task",
+        data: today_task
+      })
+      this.search(this.data.today_word[n].word)
+    } else {
+      wx.setStorage({
+        key: "task",
+        data: today_task
+      })
+      this.complete()
+    }
+
   },
 
-  forget:function(){
-    this.data.task_detail[this.data.counter].forget++;
+  forget: function() {
+    var temp = this.data.counter;
+    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0) {
+      this.data.today_detail.forget++;
+    }
+    this.data.task_detail[temp].forget++;
     var today_task = wx.getStorageSync('task')
+    today_task.shift()
     var length = today_task.length
-    today_task.splice(length / 2, 0, this.data.counter)
-    today_task.splice(length / 3, 0, this.data.counter)
-    today_task.splice(6, 0, this.data.counter)
-    today_task.splice(2, 0, this.data.counter)
+    today_task.splice(length / 2, 0, temp)
+    //today_task.splice(length / 3, 0, temp)
+    today_task.splice(6, 0, temp)
+    today_task.splice(2, 0, temp)
     wx.setStorage({
       key: "task",
       data: today_task
     })
-    var n = today_task.shift()
-    this.setData({ showNot: false })
-    this.setData({ counter: n })
+    var n = today_task[0]
+    this.setData({
+      showNot: false
+    })
+    this.setData({
+      counter: n
+    })
     wx.setStorage({
       key: "task",
       data: today_task
@@ -161,20 +243,29 @@ Page({
     this.search(this.data.today_word[n].word)
   },
 
-  mohu:function(){
+  mohu: function() {
+    var temp = this.data.counter;
+    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0) {
+      this.data.today_detail.mohu++;
+    }
     this.data.task_detail[this.data.counter].mohu++;
     var today_task = wx.getStorageSync('task')
+    today_task.shift()
     var length = today_task.length
     today_task.splice(length / 3, 0, this.data.counter)
-    today_task.splice(10, 0, this.data.counter)
-    today_task.splice(3, 0, this.data.counter)
+    //today_task.splice(10, 0, this.data.counter)
+    today_task.splice(5, 0, this.data.counter)
     wx.setStorage({
       key: "task",
       data: today_task
     })
-    var n = today_task.shift()
-    this.setData({ showNot: false })
-    this.setData({ counter: n })
+    var n = today_task[0]
+    this.setData({
+      showNot: false
+    })
+    this.setData({
+      counter: n
+    })
     wx.setStorage({
       key: "task",
       data: today_task
@@ -182,56 +273,61 @@ Page({
     this.search(this.data.today_word[n].word)
   },
 
-  search:function (word) {
-    this.setData({ content: word})
+  search: function(word) {
+    this.setData({
+      content: word
+    })
     var that = this;
     wx.request({
       url: 'https://api.shanbay.com/bdc/search/?word=' + word,
       data: {},
       method: 'GET',
-      success: function (res) {
-        console.log(res)
-         that.setData({
-           pron: res.data.data.pronunciations,
-           pron_audio: res.data.data.audio_addresses,
+      success: function(res) {
+
+        that.setData({
+          pron: res.data.data.pronunciations,
+          pron_audio: res.data.data.audio_addresses,
           definition: res.data.data.definition,
         })
+        /*
+        console.log(res)
         const innerAudioContext = wx.createInnerAudioContext()
         innerAudioContext.autoplay = true
         innerAudioContext.src = res.data.data.audio_addresses.uk[0]
         innerAudioContext.onPlay(() => {
         })
+        */
         var id = res.data.data.conent_id
         that.liju(id)
       },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      fail: function() {},
+      complete: function() {}
     })
     wx.setStorage({
       key: 'first_login',
       data: false,
     })
-    
+
   },
-  read: function (e) {
+  read: function(e) {
     const innerAudioContext = wx.createInnerAudioContext()
     innerAudioContext.autoplay = true
     innerAudioContext.src = e.target.id
-    innerAudioContext.onPlay(() => {
-    })
+    innerAudioContext.onPlay(() => {})
     innerAudioContext.onError((res) => {
       console.log(res.errMsg)
       console.log(res.errCode)
     })
   },
-  moredefen:function()
-  {
-    
-    this.setData({more:!(this.data.more)})
+
+  moredefen: function() {
+
+    this.setData({
+      more: !(this.data.more)
+    })
   },
-  set_time: function (date) {
+
+  set_time: function(date) {
     var month = date.getMonth() + 1
     var day = date.getDate()
     var year = date.getFullYear()
@@ -242,58 +338,123 @@ Page({
     return [year, month, day].map(formatNumber).join('/')
 
   },
-  
-  complete(){
-    if (!wx.getStorageSync("first_login")) this.setData({cpt:true})
-    if(!wx.getStorageSync("complete"))
-    {
+
+  complete() {
+    if (!wx.getStorageSync("first_login")) this.setData({
+      cpt: true,
+      showNot: false,
+      complete_day_num: wx.getStorageSync('day_num')
+    })
+
+    
+    var chart_detail=this.data.today_detail;
+    var windowWidth = 320;
+    try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+
+    pieChart = new wxCharts({
+      animation: true,
+      canvasId: 'pieCanvas',
+      type: 'pie',
+      series: [{
+        name: '认识',
+        data: chart_detail.rem,
+      }, {
+        name: '模糊',
+        data: chart_detail.mohu,
+      }, {
+        name: '忘记',
+        data: chart_detail.forget,
+      }],
+      width: windowWidth,
+      height: 220,
+      dataLabel: true,
+    });
+
+
+    if (!wx.getStorageSync("complete")) {
+
+      var n = 0 + wx.getStorageSync('day_num');
       wx.setStorage({
         key: 'day_num',
-        data: wx.getStorageSync('day_num') + 1
+        data: n + 1
       })
+      this.setData({complete_day_num:n+1});
       wx.setStorage({
         key: 'complete',
         data: true,
       })
       this.sort_wordlist();
+      wx.setStorage({
+        key: 'my_word_num',
+        data: wx.getStorageSync("my_word_num") + 10,
+      })
+      wx.setStorage({
+        key: 'free_word_num',
+        data: wx.getStorageSync("free_word_num") + 10,
+      })
+
+      var all_detail=[];
+      if(!wx.getStorageSync("all_detail")){
+        all_detail.push(this.data.today_detail)
+        wx.setStorage({
+          key: 'all_detail',
+          data: all_detail,
+        })
+      }
+      else{
+        all_detail = wx.getStorageSync("all_detail")
+        all_detail.push(this.data.today_detail)
+        wx.setStorage({
+          key: 'all_detail',
+          data: all_detail,
+        })
+      }
+      
     }
+
   },
-  handleSaveTap(){
-    if(wx.getStorageSync('collect')){
+  handleSaveTap() {
+    if (wx.getStorageSync('collect')) {
       var collect = wx.getStorageSync('collect')
-    }
-    else {
-      var collect=[]
+    } else {
+      var collect = []
     }
     collect.push([this.data.content, this.data.pron, this.data.pron_audio, this.data.defen, this.data.definition])
     wx.setStorage({
       key: "collect",
       data: collect
     })
-   
-    wx.showToast({ title: '收藏成功' })
+
+    wx.showToast({
+      title: '收藏成功'
+    })
   },
   liju(id) {
-    var that=this
+    var that = this
     wx.request({
       url: 'https://api.shanbay.com/bdc/example/?vocabulary_id=' + id,
       data: {},
       method: 'GET',
-      success: function (res) {
+      success: function(res) {
         console.log(res)
-        that.setData({ 
+        that.setData({
           defen: [res.data.data[0], res.data.data[1], res.data.data[3], res.data.data[4]]
         })
-        that.setData({ bottomline: res.data.data[0].translation})
+        that.setData({
+          bottomline: res.data.data[0].translation
+        })
       },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      fail: function() {},
+      complete: function() {}
     })
 
   },
-  tags(){
+  tags() {
     wx.navigateTo({
       url: '../test/test',
       success: function(res) {},
@@ -302,42 +463,38 @@ Page({
     })
   },
 
-  sort_wordlist(){
-    var last_list=wx.getStorageSync("word_list");
-    var today_detail=this.data.task_detail;
+  sort_wordlist() {
+    var last_list = wx.getStorageSync("word_list");
+    var today_detail = this.data.task_detail;
     //var today_word=this.data.today_word;
-    var len=today_detail.length;
-    for(var i=0;i<len;i++){
-      last_list[i].day=0;
-      if(today_detail[i].rem >= 1){
-        last_list[i].ease=last_list[i].ease+0.05;
-      }
-      else{
-        if (today_detail[i].mohu < today_detail[i].forget){
+    var len = today_detail.length;
+    for (var i = 0; i < len; i++) {
+      last_list[i].day = 0;
+      if (today_detail[i].rem >= 1) {
+        last_list[i].ease = last_list[i].ease + 0.05;
+      } else {
+        if (today_detail[i].mohu < today_detail[i].forget) {
           last_list[i].ease = last_list[i].ease - 0.1;
-        }
-        else last_list[i].ease = last_list[i].ease - 0.05;
+        } else last_list[i].ease = last_list[i].ease - 0.05;
       }
     }
-    var len2=last_list.length;
-    for (var i = len; i <len2;i++){
+    var len2 = last_list.length;
+    for (var i = len; i < len2; i++) {
       last_list[i].day++;
     }
-    for(var i=0;i<len2;i++){
-      for(var j=i+1;j<len2;j++){
-        if(last_list[j].ease < last_list[i].ease){
-          var temp=last_list[j];
-          last_list[j]=last_list[i];
-          last_list[i]=temp;
+    for (var i = 0; i < len2; i++) {
+      for (var j = i + 1; j < len2; j++) {
+        if (last_list[j].ease < last_list[i].ease) {
+          var temp = last_list[j];
+          last_list[j] = last_list[i];
+          last_list[i] = temp;
         }
       }
     }
     wx.setStorageSync("word_list", last_list);
   },
 
-  new_day(){
-
-    
+  new_day() {
     wx.setStorage({
       key: 'day',
       data: this.data.time,
@@ -354,12 +511,39 @@ Page({
       key: 'first_login',
       data: true,
     })
-    
+    wx.setStorage({
+      key: this.data.time,
+      data: 0,
+    })
+    if (!wx.getStorageSync("day_num")) {
+      wx.setStorage({
+        key: 'day_num',
+        data: 0,
+      })
+    }
+    wx.setStorage({
+      key: 'today_had_choice',
+      data: 0,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+
+    this.setData({
+      today_detail:{"day":this.data.time,"rem":0,"mohu":0,"forget":0}
+    })
+    wx.setStorage({
+      key: 'today_detail',
+      data: this.data.today_detail,
+    })
+
+
     var last_list = wx.getStorageSync("word_list");
     var len2 = last_list.length;
     var day_num = wx.getStorageSync("day_task");
     var today_list = [];
-    for (var i = 0, k = 0; i < len2; i++) {
+    var k = 0;
+    for (var i = 0; i < len2; i++) {
       if (k === day_num || (last_list[i].ease > 0.5 && last_list[i].day < 3)) break;
       today_list[k++] = last_list[i];
     }
@@ -368,16 +552,20 @@ Page({
       data: today_list,
     })
     wx.setStorage({
-      key: 'task_detail',
-      data: [],
+      key: 'today_new_num',
+      data: wx.getStorageSync("day_task") - k,
     })
 
     var nn = [];
     var bb = [];
-    var day=wx.getStorageSync("day_task")
+    var day = wx.getStorageSync("day_task")
     for (var i = 0; i < day; i++) {
       nn[i] = i;
-      bb[i] = { "rem": 0, "mohu": 0, "forget": 0 }
+      bb[i] = {
+        "rem": 0,
+        "mohu": 0,
+        "forget": 0
+      }
     }
     wx.setStorage({
       key: 'task',
@@ -387,6 +575,13 @@ Page({
       key: 'task_detail',
       data: bb,
     })
-  }
-})
+  },
 
+  goto_choice() {
+    wx.navigateTo({
+      url: '../job/job',
+    })
+  },
+  
+
+})

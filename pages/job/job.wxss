@@ -44,22 +44,22 @@ page{
    color: #515151;
 }
 .today_word_num{
-   font-size: 50rpx;
+   font-size: 16 px;
    text-align: center;
    font-weight: 800;
 }
 .new_word_num{
-   font-size: 50rpx;
+   font-size: 16 px;
    text-align: center;
    font-weight: 800;
 }
 .lest_num{
-   font-size: 50rpx;
+   font-size: 16 px;
    text-align: center;
    font-weight: 800;
 }
 .my_word_num{
-   font-size: 50rpx;
+   font-size: 16 px;
    text-align: center;
    font-weight: 800;
 }
@@ -167,7 +167,7 @@ page{
   
   width: 96%;
   flex-direction: row;
-  height: 30px;
+  height: 45px;
   border-bottom: 1px solid #999;
   align-items: left;
   background-color: white;
@@ -180,9 +180,9 @@ page{
   margin-right: 2%;
   width: 96%;
   flex-direction: row;
-  height: 30px;
+  height: 42px;
   border-bottom: 1px solid rgb(132, 192, 182);
-  align-items: left;
+  text-align: left;
   background-color: white;
   opacity: 0.82
 }
@@ -210,14 +210,39 @@ page{
 .word{
   margin: auto;
   font-family: Songti TC;
-  font-size: 15px;
+  font-size: 15 px;
   color: black;
+  text-align: left;
   font-weight: 200;
 }
+
+.word2{
+  width: 40%;
+  margin: auto;
+  font-family: Songti TC;
+  font-size: 15 px;
+  color: black;
+
+  text-align: left;
+  font-weight: 200;
+}
+
+.num_word2{
+  width: 40px;
+  margin: auto;
+  font-family: Songti TC;
+  font-size: 15px;
+  border: 1px solid greenyellow; 
+  border-radius: 3px;
+  color: #333;
+  font-weight: 200;
+  text-align: center;
+}
+
 .num_word{
   margin: auto;
   font-family: Songti TC;
-  font-size: 14px;
+  font-size: 15px;
   color: gray;
   font-weight: 200;
 }

@@ -2,10 +2,148 @@
 
 /* pages/me/index.wxss */
 .page {
+  
+}
+.userinfo{
+  height: 80px;
   background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  
+}
+.user_pic{
+   height: 60px;
+   width: 60px;
+   
+   margin-top: auto;
+   margin-bottom: auto;
+   border-radius: 50%;
+}
+
+.user_detail{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  padding-left: 10px;
+  color: #334;
+}
+
+.study_set{
+  background-color: #fff;
+}
+
+.study_set_block{
+  margin-left: 10px;
+  padding-top: 5px;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+  color: #333;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+}
+.day_num_title{
+  font-size: 14px;
+  color: #333;
+}
+.day_num_note{
+  font-size: 9px;
+  color: #999;
+}
+
+.left_block{
+  width: 65%;
+  margin-top: auto;
+  margin-bottom: auto; 
+}
+.right_block{
+  margin-right: 20px;
+  margin-left: 20px;
+  width: 70px;
+  height: 32px;
+  border: 1px solid seagreen;
+  background-color: seagreen;
+  border-radius: 3px;
+  margin-top: auto;
+  margin-bottom: auto; 
+  color: #fff;
+  text-align-last:  center;
+  text-align: center;
+}
+
+.input_content{
+  margin-right: 20px;
+  margin-left: 20px;
+  width: 70px;
+  height: 32px;
+  border: 1px solid seagreen;
+  background-color: #fff;
+  border-radius: 3px;
+  margin-top: auto;
+  font-size: 16px;
+  margin-bottom: auto; 
+  color: #000;
+  text-align-last:  center;
+  text-align: center;
+}
+
+.right_block_content{
+  align-content: center;
+  text-align: left;
+  color: #000;
   
 }
 
+.sorry_note{
+  position: fixed;
+  width: 450rpx;
+  height: 220px;
+  background-color: #fff;
+  border: 3px solid grey;
+  border-radius: 8px;
+  left: 150rpx;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back_note{
+  position: fixed;
+  width: 550rpx;
+  height: 150px;
+  background-color: #fff;
+  border: 3px solid grey;
+  border-radius: 8px;
+  left: 100rpx;
+  top: 400rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sorry_word{
+  color: #333;
+  margin: auto;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.forgive{
+  color: #fff;
+  margin: auto;
+  background-color: green;
+  border-radius: 6px;
+  width: 80px;
+  height: 30px;
+  border: 3px solid grey;
+  font-size: 18px;
+  text-justify: auto;
+  font-weight: 800;
+  text-align: center;
+}
+/*
 .user-card {
 
   box-shadow: 0 0 15rpx 0 rgba(0, 0, 0, 0.1);
@@ -146,3 +284,5 @@
   font-weight: 600;
 
 }
+
+*/

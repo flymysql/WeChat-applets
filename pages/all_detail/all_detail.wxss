@@ -1,0 +1,59 @@
+/* pages/all_detail/all_detail.wxss */
+
+.container{
+  background-color: #fff;
+  height: 100%;
+  align-content: left;
+  align-items: left;
+  text-align: left;
+}
+.canvas{
+  margin-top: 10px; 
+  height: 260px;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: #aaa solid 1px;
+}
+.statistic{
+  margin-left: 20px;
+  background-color: #fff;
+  align-items: left;
+  width: 100%;
+  margin-top: 26px;
+  text-align: left;
+
+}
+.rember{
+  border-left: 4px solid green;
+  height: 20px;
+  font-size: 12px;
+  padding-left: 10px;
+  margin-bottom: 10px; 
+  color: green;
+}
+.mohu{
+  border-left: 4px solid orange;
+  height: 20px;
+  font-size: 12px;
+  padding-left: 10px;
+  margin-bottom: 10px; 
+  color: orange;
+}
+
+.forget{
+  border-left: 4px solid red;
+  height: 20px;
+  font-size: 12px;
+  padding-left: 10px;
+  margin-bottom: 10px; 
+  color: red;
+}
+
+.total{
+   border-left: 4px solid gray;
+  height: 20px;
+  font-size: 12px;
+  padding-left: 10px;
+  margin-bottom: 10px; 
+  color: grey;
+}

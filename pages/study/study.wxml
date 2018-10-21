@@ -14,9 +14,9 @@
 <view class="head">
     <view class="detail_word">{{content}}</view>
     <view class="detail_pron">
-      <image bindtap="read"style="width: 20px; height: 20px; background-color:rgb(151, 212, 162);" mode="scaleToFill" src="../../images/yuying.png" id="{pron_audio.uk[0]}}"></image>
+      <image bindtap="read"style="width: 20px; height: 20px; " mode="scaleToFill" src="../../images/yuying.png" id="{pron_audio.uk[0]}}"></image>
       <view bindtap="read"id="{{pron_audio.uk[0]}}">英/{{pron.uk}}/</view>
-      <image bindtap="read" id="{{pron_audio.us[0]}}" style="width: 20px; height: 20px; background-color: rgb(151, 212, 162);" mode="scaleToFill" src="../../images/yuying.png"></image>
+      <image bindtap="read" id="{{pron_audio.us[0]}}" style="width: 20px; height: 20px; " mode="scaleToFill" src="../../images/yuying.png"></image>
       <view bindtap="read" id="{{pron_audio.us[0]}}">美/{{pron.us}}/</view>
     </view>
     <view style="width:80%;font-size: 14px;font-family: Songti TC;padding-bottom: 6px;" >{{definition}}</view>
@@ -59,40 +59,52 @@
   </view>
   </view>
 
-      <image class="sc2" style="width: 20px; height: 20px; background-color:rgb(151, 212, 162);" catchtap="handleSaveTap" mode="scaleToFill" src="../../images/sc2.png"></image>
-      <button open-type="share" style="width: 20px; height: 20px; background-color:rgb(151, 212, 162);" class="zf" id="{{id1}}" > <image class="zf" style="width: 20px; height: 20px; background-color:rgb(151, 212, 162);" catchtap="handlezfTap" mode="scaleToFill" src="../../images/zf.png"></image>  </button>
+      <image class="sc2" style="width: 20px; height: 20px; " catchtap="handleSaveTap" mode="scaleToFill" src="../../images/sc2.png"></image>
+      <button open-type="share" style="width: 20px; height: 20px;" class="zf" id="{{id1}}" > <image class="zf" style="width: 20px; height: 20px;" catchtap="handlezfTap" mode="scaleToFill" src="../../images/zf.png"></image>  </button>
   </view>
 </view>
 </view>
 
 
 
-
-<view wx:if="{{cpt}}" class="complete_bg">
-  <view class="complete" >
-      <view class="congratulate">太棒啦！今天的单词都背完了！</view>
-      <view class="share"  bindtap="tags"><view class="share_word">盖章</view>
-      </view>
-        <button  open-type="share" class="challenge" id="{{id2}}">
-           <view class="share_word">分享</view>
-        </button>
-       </view>
-</view>
-
-<view wx:if="{{goto_choice}}" class='content' bindtap='goto_choice'>
+<view wx:if="{{goto_choice&&!(cpt)}}" class='content' bindtap='goto_choice'>
     <view class='detect'>
-        <view>你今天需要选择23个新单词！</view>
-        <view style='color: #83c41a;;'>点击选词</view>
+        <view>你今天需要选择 {{today_new_num}}个新单词！</view>
+        <view style='color: #83c41a;'>在词库中选取</view>
     </view>
+    <view class='ok'>
+     <view class='bottomline'>每天的新词数根据平常学习情况而定</view>
+  </view>
 </view>
 
-<view wx:if="{{!(showNot)&&!(cpt)}}" class="content" bindtap='show'>
-       <view class='detect'>
+<view wx:if="{{!(showNot)&&!(goto_choice)&&!(cpt)}}" class="content" bindtap='show'>
+
+    <view class='detect'>
         <view>大声把英文发音和中文解释说出口！</view>
         <view style='color: #83c41a;;'>点击屏幕查看答案</view>
     </view>
+
   <view class='ok'>
      <view class='bottomline'>{{bottomline}}</view>
+  </view>
+</view>
+
+<view wx:if="{{cpt}}" class='content_cpt'>
+   <view class='detect2'>
+        <view>太棒啦!今天的任务都完成了</view>
+        <view style='color: #83c41a;'>这是你的第{{complete_day_num}}天签到</view>
+        <view style='color: #777; font-size: 14px;font-weight: 300;'>获得10个单词上限</view>
+
+<view class='canvas_content'>
+    <canvas canvas-id="pieCanvas" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
+</view>
+
+        	
+
+
+    </view>
+    <view class='ok'>
+     <view class='bottomline'>将小鸡单词分享给好友可以获得5个单词上限哦</view>
   </view>
 </view>
 

@@ -47,32 +47,32 @@
        <view class="first_one">
            <view style=" display: flex;flex-direction: row;">
                <view  class="first_paimin">1</view>
-               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[0].avatarUrl}}"></image>
-               <view class="first_name">{{globalData[0].nickName}}</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[0].head_url}}"></image>
+               <view class="first_name">{{globalData[0].title}}</view>
            </view>
            <view style="  padding: 12px;">{{globalData[0].score}}</view>
        </view>
               <view class="first_one">
            <view style=" display: flex;flex-direction: row;">
                <view  class="second_paimin">2</view>
-               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[1].avatarUrl}}"></image>
-               <view class="first_name">{{globalData[1].nickName}}</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[1].head_url}}"></image>
+               <view class="first_name">{{globalData[1].title}}</view>
            </view>
            <view style="  padding: 12px;">{{globalData[1].score}}</view>
        </view>
               <view class="first_one">
            <view style=" display: flex;flex-direction: row;">
                <view  class="third_paimin">3</view>
-               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[2].avatarUrl}}"></image>
-               <view class="first_name">{{globalData[2].nickName}}</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[2].head_url}}"></image>
+               <view class="first_name">{{globalData[2].title}}</view>
            </view>
            <view style="  padding: 12px;">{{globalData[2].score}}</view>
        </view> 
        <view class="first_one">
         <view style=" display: flex;flex-direction: row;">
                <view  class="third_paimin">4</view>
-               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[3].avatarUrl}}"></image>
-               <view class="first_name">{{globalData[3].nickName}}</view>
+               <image style="width:30px;height:30px;border-radius:15px;  padding: 5px;" mode="scaleToFill" src="{{globalData[3].head_url}}"></image>
+               <view class="first_name">{{globalData[3].title}}</view>
            </view>
            <view style="  padding: 12px;">{{globalData[3].score}}</view>
        </view>

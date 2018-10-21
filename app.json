@@ -2,6 +2,7 @@
   "pages":[
     "pages/study/study",
     "pages/job/job",
+    "pages/all_detail/all_detail",
     "pages/search/search",
     "pages/detail-word/detail-word",
     "pages/me/me",
@@ -11,8 +12,7 @@
     "pages/audio_test/audio_test",
     "pages/about/about",
     "pages/my_word/my_word",
-    "pages/suggestion/suggestion",
-    "pages/rank/rank"
+    "pages/suggestion/suggestion"
  
   ],
   
@@ -32,7 +32,7 @@
     "list": [
       {
         "pagePath": "pages/study/study",
-        "text": "首页",
+        "text": "学习",
         "iconPath": "images/home2.png",
         "selectedIconPath": "images/home.png"
       },
@@ -40,15 +40,22 @@
       {
         "pagePath": "pages/job/job",
         "text": "选词",
-        "iconPath": "images/search2.png",
-        "selectedIconPath": "images/search.png"
+        "iconPath": "images/choice.png",
+        "selectedIconPath": "images/choice2.png"
+      },
+
+      {
+        "pagePath": "pages/all_detail/all_detail",
+        "text": "统计",
+        "iconPath": "images/statistic.png",
+        "selectedIconPath": "images/statistic2.png"
       },
     
       {
         "pagePath": "pages/me/me",
         "text": "我的",
-        "iconPath": "images/ji.png",
-        "selectedIconPath": "images/ji2.png"
+        "iconPath": "images/我的.png",
+        "selectedIconPath": "images/我的2.png"
       }
     ]
   }

@@ -4,12 +4,12 @@
 		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
-		"minified": true,
+		"minified": false,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.91",
-	"appid": "wx90951b51c0e9f6f9",
+	"libVersion": "2.3.0",
+	"appid": "你的appid",
 	"projectname": "%E5%B0%8F%E9%B8%A1%E5%8D%95%E8%AF%8D",
 	"condition": {
 		"search": {

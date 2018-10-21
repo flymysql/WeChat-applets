@@ -16,24 +16,25 @@
 </view>
 -->
 <view class="word_num">
-   <view class="new_word_num">{{new_word}}
-     <view style="font-size:25rpx; ">新词数</view>
+   <view class="new_word_num">{{today_new_num}}
+     <view style="font-size:25rpx; ">今日新词</view>
    </view>
-   <view class="today_word_num">{{today_word}}
-     <view style="font-size:25rpx; ">今日单词</view>
-   </view>
+   
    <view class="lest_num">{{lest_word}}
      <view style="font-size:25rpx; ">已背单词</view>
    </view>
+   <view class="today_word_num">{{day_num}}
+     <view style="font-size:25rpx; ">累计打卡</view>
+   </view>
    <view class="my_word_num">{{my_word}}
-     <view style="font-size:25rpx; ">我的单词</view>
+     <view style="font-size:25rpx; ">规划单词</view>
    </view>
 
 </view>
 
 <view class="botton_my" bindtap="choice_book" id="{{id1}}">
-      <view class="word">已选单词</view>
-      <view class="num_word">383词</view>
+      <view class="word">选取单词</view>
+      <view class="num_word">{{today_had_choice}}词</view>
      </view>
      
 
@@ -42,7 +43,6 @@
       <view class="word">考研词汇</view>
       <view class="num_word">3837词</view>
      </view>
-   <view class="botton" bindtap="choice_book" id="{{id2}}"> <view class="word">顺序词汇</view><view class="num_word">12347词</view></view>
    <view class="botton"  bindtap="choice_book" id="{{id3}}"> <view class="word">四级词汇</view><view class="num_word">2895词</view></view>
    <view class="botton" bindtap="choice_book" id="{{id4}}"><view class="word">六级词汇</view><view class="num_word">2085词</view></view>
       <view class="botton" bindtap="choice_book" id="{{id12}}"><view class="word">四级核心词</view> <view class="num_word">687词</view></view>
@@ -53,8 +53,8 @@
 
 <template name="book">
    <view class="botton_word">
-      <view class="word">{{item}} </view>
-      <view class="num_word" bindtap='choice_word' id='{{item}}'>添加</view>
+      <view class="word2">{{item}} </view>
+      <view class="num_word2" bindtap='choice_word' id='{{item}}'>添加</view>
     </view>
 </template>
 
@@ -63,7 +63,7 @@
        <view class="word">返回</view><view class="num_word">选取单词</view>
     </view>
     <block wx:for="{{book_list}}">
-         <template is="book" data="{{item}}"/>
+        <template is="book" data="{{item}}"/>
     </block>
 
 </view>

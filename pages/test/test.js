@@ -1,4 +1,7 @@
 // pages/test/test.js
+
+var Bmob = require('../../dist/Bmob-1.6.4.min.js');
+Bmob.initialize("你的appid", "你的secret id");
 var list = require('../../data/vocabulary.js')
 //var qcloud = require('../../vendor/wafer2-client-sdk/index')
 //var config = require('../../config')
@@ -32,18 +35,7 @@ Page({
    */
   onLoad: function (options) {
     this.search()
-    app.appData.fromClickId = options.currentClickId
-    app.upDateUser_networkFromClickId = require('../../utils/upDateUser_networkFromClickId.js').upDateUser_networkFromClickId
-    wx.showShareMenu({
-      withShareTicket: true
-
-
-
-    })
-    app.pageGetUserInfo(this, this.getScore)
     
-
- 
   },
 
   /**
@@ -107,6 +99,7 @@ Page({
         innerAudioContext.onPlay(() => {
         })
       }else{
+        //this.set_score(this.data.true_num)
         this.setData({daan:false})
         this.setData({ complete: true })
         const innerAudioContext = wx.createInnerAudioContext()
@@ -121,11 +114,7 @@ Page({
           this.setData({ history: this.data.score })
         }
 
-        app.pageGetUserInfo(this, this.getScore)
-        wx.showShareMenu({
-          withShareTicket: true
-        })
-        app.pageGetUserInfo(this)
+       
         this.getRankGlobalData();
         
       }
@@ -198,6 +187,37 @@ Page({
     this.search()
   },
   set_score(score) {
+    
+    if(!wx.getStorageSync("diary_id"))
+    {
+      const query = Bmob.Query('diary');
+      query.set("score", score)
+      query.set("head_url", wx.getStorageSync('userInfo').avatarUrl)
+      query.set("title", wx.getStorageSync('userInfo').nickName)
+      query.save().then(res => {
+        console.log(res)
+        
+      }).catch(err => {
+        console.log(err)
+        wx.setStorage({
+          key: 'diary_id',
+          data: res.objectId,
+        })
+      })
+    }
+    else{
+      const query = Bmob.Query('tableName');
+      query.get(wx.getStorageSync("diary_id")).then(res => {
+        console.log(res)
+        res.set("score", score)
+        res.set("head_url", wx.getStorageSync('userInfo').avatarUrl)
+        res.set("title", wx.getStorageSync('userInfo').nickName)
+        res.save()
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+    
     /*
     var openId = this.data.openId
     if (openId) {
@@ -243,12 +263,31 @@ Page({
     */
   },
   onReachBottom: function () {//下拉加载
-    const that = this
-    if (that.data.currentTab) {
-      that.getRankGlobalData()
-    }
+   
   },
   getRankGlobalData() {//加载全球排名的数据
+
+    const query = Bmob.Query('diary');
+    //query.limit(10);
+    query.order("score");
+    query.find().then(res => {
+    console.log(res);
+    var len=res.length;
+    for(var i=0;i<5;i++){
+      for(var j=i+1;j<len;j++){
+        if(res[i]<res[j]){
+          var temp=res[i];
+          res[i]=res[j];
+          res[j]=temp;
+        }
+      }
+    }
+    this.setData({ globalData:res})
+    
+
+    });
+
+
   /*
     const that = this
     qcloud.request({
