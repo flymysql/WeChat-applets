@@ -1,3 +1,8 @@
+/*
+ * 小鸡单词，主要代码，更新于2018/10/21
+   作者：兰州小红鸡
+ */
+
 var wxCharts = require('../../utils/wxcharts.js');
 
 var app = getApp();
@@ -7,7 +12,7 @@ Page({
   data: {
     time: "",
     cpt: false,
-    counter: {},
+    counter: {},                          //存储当前单词号码
     today_new_word: 0,
     dis: false,
     id1: "我在小鸡单词看到这个单词觉得很有趣，一起来学习吧！",
@@ -16,26 +21,31 @@ Page({
     id4: 4,
     today_num: 0,
     today_word: [],
-    bottomline: "",
+    bottomline: "",       //底部提示
     task_detail: {}
   },
   onLoad: function(options) {
     this.setData({
-      time: this.set_time(new Date()), //日期
+      time: this.set_time(new Date()),        //日期
       day_num: wx.getStorageSync('day_task'), //每天任务量
       today_detail:wx.getStorageSync("today_detail")
     })
 
+
+    //如果是新的一天，调用new_day函数
     if (this.data.time != wx.getStorageSync("day")) {
       this.new_day();
     }
+
+    //数据初始化
     this.setData({
-      book: wx.getStorageSync('book'), //
+      book: wx.getStorageSync('book'),
       today_word: wx.getStorageSync('today_word'),
       task_detail: wx.getStorageSync("task_detail"),
       today_new_num: wx.getStorageSync("today_new_num")
     })
 
+    //如果单词列表的词不够，要求用户先去选词
     if (this.data.today_word.length < this.data.day_num) {
 
       this.setData({
@@ -56,10 +66,11 @@ Page({
         
         this.search(this.data.today_word[n].word)
       } else {
-        if (!wx.getStorageSync("first_login")) this.complete()
+        if (!wx.getStorageSync("first_login")) this.complete()  //登陆时判断是否今天已完成
       }
     }
     
+    //可能会有task_detail数据丢失的情况，重新初始化
     if (!wx.getStorageSync("task_detail")){
       var nn = [];
       var bb = [];
@@ -87,8 +98,9 @@ Page({
   onReady: function () {
   },
 
-  onShow: function() {
 
+  //当用页面重新展示时调用函数
+  onShow: function() {
     this.setData({
       today_word: wx.getStorageSync('today_word'),
       task_detail: wx.getStorageSync("task_detail"),
@@ -104,7 +116,7 @@ Page({
         goto_choice: false
       })
       
-      
+      //加载第一个单词
       var today_task = wx.getStorageSync('task')
       var length = today_task.length
       if (length > 0) {
@@ -124,7 +136,7 @@ Page({
 
   },
 
-
+  //当页面被影藏时，保存数据
   onHide: function() {
     wx.setStorageSync("task_detail", this.data.task_detail);
     wx.setStorage({
@@ -133,6 +145,7 @@ Page({
     })
   },
 
+  //页面被卸载时，保存学习数据
   onUnload: function() {
     wx.setStorageSync("task_detail", this.data.task_detail);
     wx.setStorage({
@@ -141,6 +154,7 @@ Page({
     })
   },
 
+  //单词被展示时
   show: function() {
     const innerAudioContext = wx.createInnerAudioContext()
     innerAudioContext.autoplay = true
@@ -156,6 +170,7 @@ Page({
     })
   },
 
+  //页面分享函数
   onShareAppMessage: function(options) {
     return {
       title: options.target.id,
@@ -174,18 +189,27 @@ Page({
 
   },
 
+
+  //用户点击认识
   next: function() {
+
+    //判断当前单词是否第一次展示
     var temp = this.data.counter;
     if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0){
       this.data.today_detail.rem++;
     }
-      this.data.task_detail[temp].rem++;
+
+    this.data.task_detail[temp].rem++;
+
+    //判断当前单词是否最后一次被显示
     if (this.data.task_detail[temp].rem >= this.data.task_detail[temp].forget * 3 + this.data.task_detail[temp].mohu * 2) {
       wx.setStorage({
         key: this.data.time,
         data: wx.getStorageSync(this.data.time) + 1
       })
     }
+
+    //判断当前单词是否最后一个单词，并准备加载下一个单词
     var today_task = wx.getStorageSync('task')
     today_task.shift();
     var length = today_task.length
@@ -212,8 +236,11 @@ Page({
 
   },
 
+
+  //用户点击忘记时调用该函数
   forget: function() {
     var temp = this.data.counter;
+    //判断是否第一次显示
     if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0) {
       this.data.today_detail.forget++;
     }
@@ -221,6 +248,8 @@ Page({
     var today_task = wx.getStorageSync('task')
     today_task.shift()
     var length = today_task.length
+
+    //在单词队列中添加三个该单词
     today_task.splice(length / 2, 0, temp)
     //today_task.splice(length / 3, 0, temp)
     today_task.splice(6, 0, temp)
@@ -243,6 +272,7 @@ Page({
     this.search(this.data.today_word[n].word)
   },
 
+  //用户点击模糊时调用函数
   mohu: function() {
     var temp = this.data.counter;
     if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0) {
@@ -251,6 +281,8 @@ Page({
     this.data.task_detail[this.data.counter].mohu++;
     var today_task = wx.getStorageSync('task')
     today_task.shift()
+
+    //在单词队列中国添加两个该单词
     var length = today_task.length
     today_task.splice(length / 3, 0, this.data.counter)
     //today_task.splice(10, 0, this.data.counter)
@@ -273,6 +305,8 @@ Page({
     this.search(this.data.today_word[n].word)
   },
 
+
+  //通过扇贝提供的api搜索该函数
   search: function(word) {
     this.setData({
       content: word
@@ -309,6 +343,8 @@ Page({
     })
 
   },
+
+  //单词发音触发函数
   read: function(e) {
     const innerAudioContext = wx.createInnerAudioContext()
     innerAudioContext.autoplay = true
@@ -320,6 +356,7 @@ Page({
     })
   },
 
+  //更多例句触发函数
   moredefen: function() {
 
     this.setData({
@@ -327,6 +364,8 @@ Page({
     })
   },
 
+
+  //设置当天日期
   set_time: function(date) {
     var month = date.getMonth() + 1
     var day = date.getDate()
@@ -339,6 +378,7 @@ Page({
 
   },
 
+  //完成当天学习任务后触发的函数
   complete() {
     if (!wx.getStorageSync("first_login")) this.setData({
       cpt: true,
@@ -346,7 +386,7 @@ Page({
       complete_day_num: wx.getStorageSync('day_num')
     })
 
-    
+    //绘制当天学习细节扇行图
     var chart_detail=this.data.today_detail;
     var windowWidth = 320;
     try {
@@ -376,6 +416,8 @@ Page({
     });
 
 
+    //第一次触发完成函数时
+    //保存当天的学习情况
     if (!wx.getStorageSync("complete")) {
 
       var n = 0 + wx.getStorageSync('day_num');
@@ -418,6 +460,8 @@ Page({
     }
 
   },
+
+  //用户触发收藏单词按钮
   handleSaveTap() {
     if (wx.getStorageSync('collect')) {
       var collect = wx.getStorageSync('collect')
@@ -434,6 +478,8 @@ Page({
       title: '收藏成功'
     })
   },
+
+  //触发例句函数
   liju(id) {
     var that = this
     wx.request({
@@ -454,6 +500,8 @@ Page({
     })
 
   },
+
+  //触发测试函数
   tags() {
     wx.navigateTo({
       url: '../test/test',
@@ -463,10 +511,15 @@ Page({
     })
   },
 
+
+  //触发本地单词队列重新排序
+  //在当天第一次完成单词任务后触发
   sort_wordlist() {
     var last_list = wx.getStorageSync("word_list");
     var today_detail = this.data.task_detail;
     //var today_word=this.data.today_word;
+
+    //重新设置当天背的单词的权值
     var len = today_detail.length;
     for (var i = 0; i < len; i++) {
       last_list[i].day = 0;
@@ -478,6 +531,8 @@ Page({
         } else last_list[i].ease = last_list[i].ease - 0.05;
       }
     }
+
+    //重新单词排序
     var len2 = last_list.length;
     for (var i = len; i < len2; i++) {
       last_list[i].day++;
@@ -494,6 +549,7 @@ Page({
     wx.setStorageSync("word_list", last_list);
   },
 
+  //每天第一次登陆时触发，学习数据重置
   new_day() {
     wx.setStorage({
       key: 'day',
@@ -537,7 +593,7 @@ Page({
       data: this.data.today_detail,
     })
 
-
+    //安排当天的学习任务
     var last_list = wx.getStorageSync("word_list");
     var len2 = last_list.length;
     var day_num = wx.getStorageSync("day_task");
