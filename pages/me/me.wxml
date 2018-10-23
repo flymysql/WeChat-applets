@@ -98,11 +98,16 @@
      </view>
    </view>
 
-    <view  class='study_set_block'>
+    <view  class='study_set_block' bindtap='my_collect'>
      <view class='left_block'>
-        <view class='day_num_title' bindtap='my_collect'>我收藏的单词</view>
+        <view class='day_num_title' >我收藏的单词</view>
      </view>
-  
+   </view>
+
+   <view  class='study_set_block' bindtap='my_word_list'>
+     <view class='left_block'>
+        <view class='day_num_title' >我加入计划的单词</view>
+     </view>
    </view>
 
 </view>
@@ -113,32 +118,32 @@
 
 <view class='study_set'>
 
-   <view  class='study_set_block'>
+   <view  class='study_set_block' bindtap='test_card'>
      <view class='left_block'>
-        <view class='day_num_title' bindtap='test_card'>词汇量测试</view>
+        <view class='day_num_title' >词汇量测试</view>
      </view>
    </view>
 
-      <view  class='study_set_block'>
+      <view  class='study_set_block' bindtap='suggestion'>
      <view class='left_block'>
-        <view class='day_num_title' bindtap='suggestion'>意见反馈 & bug提交</view>
+        <view class='day_num_title' >意见反馈 & bug提交</view>
      </view>
    </view>
 
-    <view  class='study_set_block'>
+    <view  class='study_set_block' bindtap='toforgive'>
      <view class='left_block'>
-        <view class='day_num_title' bindtap='toforgive'>小鸡单词使用指南</view>
+        <view class='day_num_title' >小鸡单词使用指南</view>
      </view>
    </view>
    
-       <view  class='study_set_block'>
+       <view  class='study_set_block' bindtap='about_me'>
      <view class='left_block'>
-        <view class='day_num_title' bindtap='about_me'>关于小鸡单词</view>
+        <view class='day_num_title' >关于小鸡单词</view>
      </view>
    </view>
 
 </view>
- <view>
+ <view style='margin: 2%; border-radius: 5px;'>
  <image style="width: 100%; " mode="scaleToFill" src='../../images/bottom.gif'></image>
  </view>
 

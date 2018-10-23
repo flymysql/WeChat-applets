@@ -5,21 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    id1: "kaoyan",
-    id2: "suiji",
-    id3: "cet4",
-    id4: "cet6",
-    id11: "kaoyan_import",
-    id12: "cet4_import",
-    id13: "cet6_import",
-    id14: "zy8",
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      list: wx.getStorageSync('word_list')
+    })
   },
 
   /**
@@ -70,17 +65,5 @@ Page({
   onShareAppMessage: function () {
   
   },
-  choice_book(e){
-    var that=this
-    wx.getStorage({
-      key: e.currentTarget.id,
-      success: function(res) {
-        that.setData({
-          list: res.data,
-          dianji: true,
-        })
-      },
-    })
-       
-  }
+ 
 })

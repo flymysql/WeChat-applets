@@ -1,6 +1,6 @@
 
 var Bmob = require('../../dist/Bmob-1.6.4.min.js');
-Bmob.initialize("你的appid", "你的secret id");
+Bmob.initialize("你的bmob云的appid", "你的bmob云的secre id");
 const app = getApp()
 Page({
 
@@ -103,6 +103,12 @@ Page({
     })
 
     
+  },
+
+  my_word_list(){
+    wx.navigateTo({
+      url: '../my_word/my_word',
+    })
   },
 
   toback(){

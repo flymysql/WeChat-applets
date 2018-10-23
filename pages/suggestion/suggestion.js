@@ -1,6 +1,6 @@
 // pages/suggestion/suggestion.js
 var Bmob = require('../../dist/Bmob-1.6.4.min.js');
-Bmob.initialize("你的appid", "你的secret id");
+Bmob.initialize("你的bmob云的appid", "你的bmob云的secre id");
 
 Page({
 

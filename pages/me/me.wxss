@@ -9,6 +9,9 @@
   background-color: #fff;
   display: flex;
   flex-direction: row;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 5px;
   
 }
 .user_pic{
@@ -30,17 +33,27 @@
 
 .study_set{
   background-color: #fff;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 5px;
 }
 
 .study_set_block{
-  margin-left: 10px;
+ 
   padding-top: 5px;
-  border-bottom: 1px solid #ccc;
+ 
   font-size: 14px;
   color: #333;
   height: 45px;
   display: flex;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
   flex-direction: row;
+  border-bottom: 1px solid rgb(132, 192, 182);
+  text-align: left;
+  background-color: white;
+  opacity: 0.82
 }
 .day_num_title{
   font-size: 14px;

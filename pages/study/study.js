@@ -25,15 +25,22 @@ Page({
     task_detail: {}
   },
   onLoad: function(options) {
+    var time=this.set_time(new Date())
     this.setData({
-      time: this.set_time(new Date()),        //日期
+      time: time,        //日期
       day_num: wx.getStorageSync('day_task'), //每天任务量
-      today_detail:wx.getStorageSync("today_detail")
+
     })
+    if(!wx.getStorageSync('today_detail') || wx.getStorageSync('today_detail')===undefined){
+      wx.setStorage({
+        key: 'today_detail',
+        data: { "day": this.data.time, "rem": 0, "mohu": 0, "forget": 0 }
+      })
+    }
 
 
     //如果是新的一天，调用new_day函数
-    if (this.data.time != wx.getStorageSync("day")) {
+    if (time != wx.getStorageSync("day")) {
       this.new_day();
     }
 
@@ -104,7 +111,7 @@ Page({
     this.setData({
       today_word: wx.getStorageSync('today_word'),
       task_detail: wx.getStorageSync("task_detail"),
-      today_detail:wx.getStorageSync("today_detail")
+      //today_detail:wx.getStorageSync("today_detail")
     })
 
     if (this.data.today_word.length < this.data.day_num) {
@@ -139,19 +146,13 @@ Page({
   //当页面被影藏时，保存数据
   onHide: function() {
     wx.setStorageSync("task_detail", this.data.task_detail);
-    wx.setStorage({
-      key: 'today_detail',
-      data: this.data.today_detail,
-    })
+ 
   },
 
   //页面被卸载时，保存学习数据
   onUnload: function() {
     wx.setStorageSync("task_detail", this.data.task_detail);
-    wx.setStorage({
-      key: 'today_detail',
-      data: this.data.today_detail,
-    })
+    
   },
 
   //单词被展示时
@@ -193,22 +194,7 @@ Page({
   //用户点击认识
   next: function() {
 
-    //判断当前单词是否第一次展示
     var temp = this.data.counter;
-    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0){
-      this.data.today_detail.rem++;
-    }
-
-    this.data.task_detail[temp].rem++;
-
-    //判断当前单词是否最后一次被显示
-    if (this.data.task_detail[temp].rem >= this.data.task_detail[temp].forget * 3 + this.data.task_detail[temp].mohu * 2) {
-      wx.setStorage({
-        key: this.data.time,
-        data: wx.getStorageSync(this.data.time) + 1
-      })
-    }
-
     //判断当前单词是否最后一个单词，并准备加载下一个单词
     var today_task = wx.getStorageSync('task')
     today_task.shift();
@@ -234,17 +220,34 @@ Page({
       this.complete()
     }
 
+    //判断当前单词是否第一次展示
+    
+    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0){
+      var td=wx.getStorageSync('today_detail');
+      td.rem=td.rem+1;
+      wx.setStorage({
+        key: 'today_detail',
+        data: td,
+      })
+    }
+
+    this.data.task_detail[temp].rem++;
+
+    //判断当前单词是否最后一次被显示
+    if (this.data.task_detail[temp].rem >= this.data.task_detail[temp].forget * 3 + this.data.task_detail[temp].mohu * 2) {
+      wx.setStorage({
+        key: this.data.time,
+        data: wx.getStorageSync(this.data.time) + 1
+      })
+    }
+
   },
 
 
   //用户点击忘记时调用该函数
   forget: function() {
+
     var temp = this.data.counter;
-    //判断是否第一次显示
-    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0) {
-      this.data.today_detail.forget++;
-    }
-    this.data.task_detail[temp].forget++;
     var today_task = wx.getStorageSync('task')
     today_task.shift()
     var length = today_task.length
@@ -270,15 +273,25 @@ Page({
       data: today_task
     })
     this.search(this.data.today_word[n].word)
+
+    
+    //判断是否第一次显示
+    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0) {
+      var td = wx.getStorageSync('today_detail');
+      td.forget = td.forget + 1;
+      wx.setStorage({
+        key: 'today_detail',
+        data: td,
+      })
+    }
+    this.data.task_detail[temp].forget++;
+    
   },
 
   //用户点击模糊时调用函数
   mohu: function() {
+
     var temp = this.data.counter;
-    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0) {
-      this.data.today_detail.mohu++;
-    }
-    this.data.task_detail[this.data.counter].mohu++;
     var today_task = wx.getStorageSync('task')
     today_task.shift()
 
@@ -303,6 +316,18 @@ Page({
       data: today_task
     })
     this.search(this.data.today_word[n].word)
+
+    
+    if (this.data.task_detail[temp].rem === 0 && this.data.task_detail[temp].mohu === 0 && this.data.task_detail[temp].forget === 0) {
+      var td = wx.getStorageSync('today_detail');
+      td.mohu = td.mohu + 1;
+      wx.setStorage({
+        key: 'today_detail',
+        data: td,
+      })
+    }
+    this.data.task_detail[this.data.counter].mohu++;
+    
   },
 
 
@@ -387,7 +412,7 @@ Page({
     })
 
     //绘制当天学习细节扇行图
-    var chart_detail=this.data.today_detail;
+    var chart_detail=wx.getStorageSync('today_detail');
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
@@ -418,7 +443,7 @@ Page({
 
     //第一次触发完成函数时
     //保存当天的学习情况
-    if (!wx.getStorageSync("complete")) {
+    if (!wx.getStorageSync("complete") || wx.getStorageSync('complete')===false) {
 
       var n = 0 + wx.getStorageSync('day_num');
       wx.setStorage({
@@ -442,7 +467,7 @@ Page({
 
       var all_detail=[];
       if(!wx.getStorageSync("all_detail")){
-        all_detail.push(this.data.today_detail)
+        all_detail.push(wx.getStorageSync('today_detail'))
         wx.setStorage({
           key: 'all_detail',
           data: all_detail,
@@ -450,7 +475,7 @@ Page({
       }
       else{
         all_detail = wx.getStorageSync("all_detail")
-        all_detail.push(this.data.today_detail)
+        all_detail.push(wx.getStorageSync('today_detail'))
         wx.setStorage({
           key: 'all_detail',
           data: all_detail,
@@ -585,12 +610,9 @@ Page({
       complete: function(res) {},
     })
 
-    this.setData({
-      today_detail:{"day":this.data.time,"rem":0,"mohu":0,"forget":0}
-    })
     wx.setStorage({
       key: 'today_detail',
-      data: this.data.today_detail,
+      data: { "day": this.data.time, "rem": 0, "mohu": 0, "forget": 0 }
     })
 
     //安排当天的学习任务

@@ -1,6 +1,8 @@
-# 小鸡单词2
+## 欢迎fork，仅供学习参考，用你勤劳的销售点亮一颗star吧
 
-> 在之前的基础上做了较大的改动
+## 小鸡单词2
+
+> 在之前的基础上做了较大的改动。代码现在看来比较臃肿，方法也都很笨，从第一个版本拿过来更改的，由于上课的原因，断断续续写了四天。现在终于干一段落了，还是要继续好好学习。**加油！！！**，另外，求关注鸭(っ °Д °;)っ
 
 ## 主要做几件事
 
@@ -25,50 +27,37 @@
 
 ## 源码简介
 
-```tree
+```java
 Demo
-├─data
-├─dist
-├─images
-├─pages
-│  ├─about
-│  ├─all_detail
-│  ├─audio_test
-│  ├─choice
-│  ├─collect_card
-│  ├─detail-word
-│  ├─index
-│  ├─job
-│  ├─me
-│  ├─my_word
-│  ├─rank
-│  ├─search
-│  ├─study
-│  ├─suggestion
-│  └─test
+├─data                    //本地词库
+├─dist                    //bmob云的sdk
+├─images                  //图片素材
+├─pages                   //
+│  ├─about                //关于我
+│  ├─all_detail           //统计页，学习情况详情
+│  ├─audio_test           //听音词汇测试，本版本废弃
+│  ├─choice               //挑选单词书，本版本废弃
+│  ├─collect_card         //收集单词的卡片
+│  ├─detail-word          //单词收索页，本版本废弃
+│  ├─index                //
+│  ├─job                  //选词页面
+│  ├─me                   //设置页面
+│  ├─my_word              //已挑选的单词展示页
+│  ├─rank                 //排名页，本版本废弃
+│  ├─search               //搜索页，本版本废弃
+│  ├─study                //学习页，重要页面
+│  ├─suggestion           //建议页
+│  └─test                 //词汇测试页
 └─utils
 
 ```
 
-
-<figure style="display: flex;flex-direction: row;" class="third">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-1.png">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-2.png">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-3.png">
-</figure>
-
-<figure style="display: flex;flex-direction: row;" class="third">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-4.png">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-5.png">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-6.png">
-</figure>
-
-<figure style="display: flex;flex-direction: row;" class="third">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-7.png">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/12.png">
-    <img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-3.png">
-</figure>
-
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-1.png)
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-2.png)
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-3.png)
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-4.png)
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-5.png)
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-7.png)
 
 > 小程序的的核心代码在study页（代码较烂，有点看不下
 
@@ -81,7 +70,7 @@ Demo
 - study.js
 ```java
 /*
- * 小鸡单词，主要代码，更新于2018/10/21
+ * 小鸡单词，主要代码，更新于2018/10/23
    作者：兰州小红鸡
  */
 
@@ -106,6 +95,18 @@ Page({
     bottomline: "",       //底部提示
     task_detail: {}
   },
+
+```
+
+
+
+## 页面onload函数
+
+> 主要负责判断是否新的一天，加载每天任务量，加载每天任务细节，和其他的细节内容 
+
+
+
+```java
   onLoad: function(options) {
     this.setData({
       time: this.set_time(new Date()),        //日期
@@ -179,7 +180,17 @@ Page({
 
   onReady: function () {
   },
+```
 
+
+
+## 页面重新展示时的函数
+
+> 主要因为用户如果当天第一次登陆后发现已选词汇不够，被强制要求先去选词，当用户离开本页面，前往词库选词回来后，需要刷新本页的数据，判断用户是否选够词。还有一些其他情况的判断
+
+
+
+```java
 
   //当用页面重新展示时调用函数
   onShow: function() {
@@ -217,7 +228,16 @@ Page({
     }
 
   },
+```
 
+
+
+## 页面隐藏与页面卸载函数
+
+
+
+
+```java
   //当页面被影藏时，保存数据
   onHide: function() {
     wx.setStorageSync("task_detail", this.data.task_detail);
@@ -235,7 +255,10 @@ Page({
       data: this.data.today_detail,
     })
   },
+```
 
+
+```java
   //单词被展示时
   show: function() {
     const innerAudioContext = wx.createInnerAudioContext()
@@ -270,8 +293,23 @@ Page({
     }
 
   },
+```
 
 
+
+
+## 界面三个按钮绑定的事件（忘记，模糊，认识）需要判断以下事情
+
+1. 单词是否第一次展示（如果是，判断第一次展示时用户时忘记还是认识）
+2. 单词是否最后一次被展示
+3. 单词是否是今天的最后一个单词
+4. 这个单词模糊，忘记和认识的次数
+5. 如果用户时忘记或模糊，则往单词队列的相应位置再次添加词单词
+
+
+
+
+```java
   //用户点击认识
   next: function() {
 
@@ -386,8 +424,18 @@ Page({
     })
     this.search(this.data.today_word[n].word)
   },
+```
 
 
+
+## 小程序并非使用自己的单词库，而是调用扇贝单词的api，在线获取单词细节
+下面使用search函数调用扇贝api获取单词详情
+
+- 在此感谢扇贝单词
+
+
+
+```java
   //通过扇贝提供的api搜索该函数
   search: function(word) {
     this.setData({
@@ -445,8 +493,11 @@ Page({
       more: !(this.data.more)
     })
   },
+```
 
+## 获取当天日期的函数
 
+```java
   //设置当天日期
   set_time: function(date) {
     var month = date.getMonth() + 1
@@ -459,7 +510,17 @@ Page({
     return [year, month, day].map(formatNumber).join('/')
 
   },
+```
 
+
+## 完成当天学习任务后触发的函数
+
+- 判断是否第一次登陆（因为当天第一次登陆时单词列表还没有单词，也会触发complete函数）
+- 绘制当天学习情况扇形图
+- 将当天学习情况写入本地
+
+
+```java
   //完成当天学习任务后触发的函数
   complete() {
     if (!wx.getStorageSync("first_login")) this.setData({
@@ -542,7 +603,13 @@ Page({
     }
 
   },
+```
 
+
+## 用户收藏单词事件和点击更多例句的事件
+
+
+```java
   //用户触发收藏单词按钮
   handleSaveTap() {
     if (wx.getStorageSync('collect')) {
@@ -592,7 +659,15 @@ Page({
       complete: function(res) {},
     })
   },
+```
 
+
+## 触发本地单词队列重新排序
+
+在当天第一次完成单词任务后触发
+
+
+```java
 
   //触发本地单词队列重新排序
   //在当天第一次完成单词任务后触发
@@ -630,7 +705,15 @@ Page({
     }
     wx.setStorageSync("word_list", last_list);
   },
+```
 
+## newday函数
+
+> 每天第一次登陆时触发，将一些当天学习情况置零
+
+
+
+```java
   //每天第一次登陆时触发，学习数据重置
   new_day() {
     wx.setStorage({
@@ -724,6 +807,11 @@ Page({
 
 })
 ```
+
+## 感慨
+
+代码现在看来比较臃肿，方法也都很笨，从第一个版本拿过来更改的，由于上课的原因，断断续续写了四天。现在终于干一段落了，还是要继续好好学习。**加油！！！**，另外，求关注鸭(っ °Д °;)っ
+
 
 仅供学习，转载请注明出处
 另外个人博客求一波友链 https://me.idealli.com

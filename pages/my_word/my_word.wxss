@@ -1,10 +1,64 @@
 /* pages/my_word/my_word.wxss */
-@import "../choice/choice.wxss";
-@import "../collect_card/collect_card.wxss";
+.collect{
+  width: 100%;
+  margin: 10px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.sim_word{
+  width: 50%;
+  text-align: left;
+  margin: auto;
+}
+.quan{
+  width: 20%;
+  text-align: left;
+  font-size: 14px;
+  color: #5f9084;
+ margin: auto;
+}
+.day_num{
+  width: 20%;
+  text-align: center;
+  font-size: 13px;
+  color: #444;
+  margin: auto;
+}
+
+.pages{
+  background-color: white;
+  height: 100%;width: 100%;
+}
+.simple_look{
+ 
+   display: flex;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
+  flex-direction: row;
+  height: 36px;
+  border-bottom: 1px solid rgb(132, 192, 182);
+  text-align: left;
+  background-color: white;
+  opacity: 0.82
+
+}
+.definition{
+  padding-left: 38px;
+  font-size: 15px;
+
+}
+.last_line{
+  width: 100%;
+  height: 300px;
+  background-image: url('https://upload-images.jianshu.io/upload_images/4179819-4c247b1477685278.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/700');
+  background-repeat: round;
+}
 .my_bg{
   height: 1200rpx;
   width: 100%;
-  background-color: #f7dab0;
+  background-color: #fff;
 
   background-size:cover;
 }
