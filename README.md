@@ -1,5 +1,10 @@
 ## 欢迎fork，仅供学习参考，用你勤劳的小手点亮一颗star吧
 
+<a href="https://www.vultr.com/?ref=7446652">
+<p style="font-size: 18px;">vultr主机每月2.5美元起！</p></a>
+
+<a href="https://www.vultr.com/?ref=7446652"><img src="https://www.vultr.com/media/banner_1.png" width="728" height="90"></a>
+
 ## 小鸡单词2
 
 > 在之前的基础上做了较大的改动。代码现在看来比较臃肿，方法也都很笨，从第一个版本拿过来更改的，由于上课的原因，断断续续写了四天。现在终于干一段落了，还是要继续好好学习。**加油！！！**，另外，求关注鸭(っ °Д °;)っ

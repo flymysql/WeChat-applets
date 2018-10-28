@@ -9,4 +9,5 @@
        <view class='total'>打卡天数    {{day_num}}</view>
     </view>
     <image src='../../images/bottom.gif' style="width: 100%;  " mode="scaleToFill" ></image>
+    <ad unit-id="adunit-65b5af1a9a993636"></ad>
 </view>

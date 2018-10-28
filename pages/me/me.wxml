@@ -145,6 +145,7 @@
 </view>
  <view style='margin: 2%; border-radius: 5px;'>
  <image style="width: 100%; " mode="scaleToFill" src='../../images/bottom.gif'></image>
+ <ad unit-id="adunit-65b5af1a9a993636"></ad>
  </view>
 
 <view class='sorry_note' wx:if="{{toforgive}}">
