@@ -14,7 +14,12 @@
 
 <br>
 
-> 2018-11-01更新
+> 2018-11-02 更新
+
+1. UI美化
+2. 没了
+
+> 2018-10-30 更新
 
 <br>
 
@@ -77,15 +82,12 @@
 > 背单词页面，仿墨墨背单词
 
 
-<br>
-
-<img width="200px" src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-2.png">
 
 > 单词选词页面（目前支持四六级词汇，考研词汇，四六级核心词汇等）
 
-<img width="200px" src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-3.png">
 
-<br>
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/1102show1.jpg)
+
 
 
 > 每天任务细节页面
@@ -98,7 +100,8 @@
 
 <br>
 
-<img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-4.png" width="200px">
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/1102show2.jpg)
+
 
 <br>
 
@@ -122,15 +125,12 @@
 
 <br>
 
-<img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-5.png" width="200px">
-
-<br>
-
 > 词汇量测试的全服排名模仿跳一跳的排名
 
 <br>
 
-<img src="https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/2018-10-21-7.png" width="200px">
+![兰州小红鸡](https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/1102show3.jpg)
+
 
 
 ## 项目历程
