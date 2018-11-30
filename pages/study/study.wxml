@@ -42,9 +42,9 @@
 
 
     <view class="ok">
-        <button class='myButton1'  bindtap="next">认识</button>
-        <button class='myButton2' bindtap='mohu'>模糊</button>
-        <button class='myButton3' bindtap='forget'>忘记</button>
+        <button class='myButton1'  bindtap="next">Remember</button>
+        <button class='myButton2' bindtap='mohu'>Blur</button>
+        <button class='myButton3' bindtap='forget'>Forget</button>
     </view>
 </view>
 

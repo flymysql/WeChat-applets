@@ -1,7 +1,7 @@
 {
   "backgroundTextStyle": "light",
-  "backgroundColor": "#4a475b",
-  "navigationBarBackgroundColor": "#4a475b",
-  "navigationBarTitleText": "小鸡单词",
+  "backgroundColor": "#a4d8fa",
+  "navigationBarBackgroundColor": "#a4d8fa",
+  "navigationBarTitleText": "数据统计",
   "navigationBarTextStyle": "white"
 }

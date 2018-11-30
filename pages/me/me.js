@@ -1,6 +1,6 @@
 
 var Bmob = require('../../dist/Bmob-1.6.4.min.js');
-Bmob.initialize("你的bmob云的appid", "你的bmob云的secre id");
+Bmob.initialize("你的bmob云appid", "你的bmob云密钥");
 const app = getApp()
 Page({
 

@@ -2,7 +2,8 @@
 
 /* pages/me/index.wxss */
 .page {
-  
+  background-color: #e6f6e8;
+  padding-top: 10px;
 }
 .userinfo{
   height: 80px;
@@ -32,7 +33,7 @@
 }
 
 .study_set{
-  background-color: #fff;
+  background-color: #e6f6e8;
   margin-left: 2%;
   margin-right: 2%;
   border-radius: 5px;
@@ -41,19 +42,21 @@
 .study_set_block{
  
   padding-top: 5px;
- 
+  padding-left: 5px;
   font-size: 14px;
   color: #333;
   height: 45px;
   display: flex;
-  margin-left: 2%;
-  margin-right: 2%;
-  width: 96%;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  width: 100%;
   flex-direction: row;
-  border-bottom: 1px solid rgb(132, 192, 182);
+  /* border-bottom: 1px solid rgb(132, 192, 182); */
   text-align: left;
   background-color: white;
-  opacity: 0.82
+  letter-spacing: 1px; 
+	line-height: 25.59375px;
+  /* opacity: 0.82 */
 }
 .day_num_title{
   font-size: 14px;
@@ -74,8 +77,7 @@
   margin-left: 20px;
   width: 70px;
   height: 32px;
-  border: 1px solid seagreen;
-  background-color: seagreen;
+  background-color: #51aad1;
   border-radius: 3px;
   margin-top: auto;
   margin-bottom: auto; 
@@ -89,7 +91,7 @@
   margin-left: 20px;
   width: 70px;
   height: 32px;
-  border: 1px solid seagreen;
+  border: 1px solid #51ddb1;
   background-color: #fff;
   border-radius: 3px;
   margin-top: auto;

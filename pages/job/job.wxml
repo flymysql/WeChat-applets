@@ -39,6 +39,11 @@
      
 
 <view wx:if="{{!choice}}" class="btn_content">
+    <view class="search_botton" bindtap="goto_search" >
+      <view class="word">搜索单词</view>
+      <view class="num_word">🔍</view>
+     </view>
+    
     <view class="botton" bindtap="choice_book" id="{{id1}}">
       <view class="word">考研词汇</view>
       <view class="num_word">3837词</view>
@@ -48,6 +53,7 @@
       <view class="botton" bindtap="choice_book" id="{{id12}}"><view class="word">四级核心词</view> <view class="num_word">687词</view></view>
    <view class="botton" bindtap="choice_book" id="{{id13}}"> <view class="word">六级重点词</view><view class="num_word">407词</view></view>
    <view class="botton"  bindtap="choice_book" id="{{id11}}"> <view class="word">考研核心词</view><view class="num_word">817词</view></view>
+   <view class="botton"  bindtap="choice_book" id="{{id15}}"> <view class="word">软件测试</view><view class="num_word">500词</view></view>
    <view class="botton" bindtap="choice_book" id="{{id14}}"><view class="word">专八词汇</view><view class="num_word">1938词</view></view>
 </view>
 
@@ -80,7 +86,11 @@
    <view bindtap="test2_card" class="book2"> <view style="text-size:30rpx;  font-weight:700;">汉英测试</view></view>
 </view>
 -->
+<view style='margin: 2%; border-radius: 5px;'>
+ <official-account></official-account>
+ <image style="width: 100%; " mode="scaleToFill" src='../../images/bottom.gif'></image>
 
+ </view>
 
 </view>
 

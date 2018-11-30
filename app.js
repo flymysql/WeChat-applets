@@ -3,17 +3,14 @@ var Bmob = require('/dist/Bmob-1.6.4.min.js');
 //var qcloud = require('./vendor/wafer2-client-sdk/index');
 //var config = require('./config');
 var util = require('./utils/util.js')
-Bmob.initialize("你的appid", "你的secret id");
+Bmob.initialize("你的bmob云appid", "你的bmob云密钥");
 
 App({
   globalData:{
     userInfo:[]
   },
   appData: {
-    //appId: config.service.appId,
-    //baseUrl: `${config.service.host}/weapp/`,
-   // tunnelStatus: 'close',//统一管理唯一的信道连接的状态：connect、close、reconnecting、reconnect、error
-   // friendsFightingRoom: undefined,//好友对战时创建的唯一房间名,作为好友匹配的标识
+ 
   },
   onLaunch(opt) {
     this.appData.opt = opt
@@ -51,11 +48,11 @@ App({
 
       wx.setStorage({
         key: 'word_list',
-        data: [],
+        data: [{"word":"equip","ease":0.5,"day":0},{"word":"frown","ease":0.5,"day":0},{"word":"fasten","ease":0.5,"day":0},{"word":"software","ease":0.5,"day":0},{"word":"stir","ease":0.5,"day":0},{"word":"distribution","ease":0.5,"day":0},{"word":"flexible","ease":0.5,"day":0},{"word":"solution","ease":0.5,"day":0},{"word":"lad","ease":0.5,"day":0},{"word":"panel","ease":0.5,"day":0},{"word":"ministry","ease":0.5,"day":0},{"word":"supreme","ease":0.5,"day":0},{"word":"supreme","ease":0.5,"day":0},{"word":"describe","ease":0.5,"day":0},{"word":"limb","ease":0.5,"day":0},{"word":"circumstance","ease":0.5,"day":0},{"word":"core","ease":0.5,"day":0},{"word":"assistant","ease":0.5,"day":0},{"word":"mess","ease":0.5,"day":0},{"word":"minus","ease":0.5,"day":0},{"word":"sector","ease":0.5,"day":0},{"word":"detection","ease":0.5,"day":0},{"word":"statue","ease":0.5,"day":0},{"word":"saucer","ease":0.5,"day":0},{"word":"skillful","ease":0.5,"day":0},{"word":"civilization","ease":0.5,"day":0},{"word":"overhead","ease":0.5,"day":0},{"word":"hobby","ease":0.5,"day":0},{"word":"statistic","ease":0.5,"day":0},{"word":"pregnant","ease":0.5,"day":0}],
       })
       wx.setStorage({
         key: 'day_task',
-        data: 30,
+        data: 10,
       })
       wx.setStorage({
         key: "my_word_num",
@@ -66,40 +63,7 @@ App({
         key: "free_word_num",
         data: 1000,
       })
-    }
-
-    /*
-    var wordlist=wx.getStorageSync("word_list");
-    var len=wordlist.length;
-    var day_num=wx.getStorageSync("day_task");
-    var today_list=[];
-    for(var i=0,k=0;i<len;i++)
-    {
-      if (k === day_num || (wordlist[i].ease > 0.5 && wordlist[i].day <3 )) break;
-      today_list[k++] = wordlist[i];
-    }
-    wx.setStorage({
-      key: 'today_word',
-      data: today_list,
-    })
-    if(!wx.getStorageSync("task")){
-      var nn = [];
-      var bb = [];
-      for (var i = 0; i < k; i++) {
-        nn[i] = i;
-        bb[i] = { "rem": 0, "mohu": 0, "forget": 0 }
-      }
-      wx.setStorage({
-        key: 'task',
-        data: nn,
-      })
-      wx.setStorage({
-        key: 'task_detail',
-        data: bb,
-      })
-    }
-    */
-    
+    }    
   },
 
 
@@ -108,98 +72,6 @@ App({
   },
   
  
-  /*
-  pageGetUserInfo(page, openIdReadyCallback) { //在page中获取用户信息
-    const userInfo = wx.getStorageSync('user_info_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A')
-    if (userInfo) {
-      page.setData({
-        userInfo,
-        openId: userInfo.openId
-      })
-      this.appData.openId = userInfo.openId
-      if (openIdReadyCallback) {
-        openIdReadyCallback(userInfo.openId)
-      }
-    } else {
-      this.userInfoReadyCallback = (userInfo) => {  //获取用户信息后的回调函数
-        page.setData({  //每个page都会自动存储userInfo和openId
-          userInfo,
-          openId: userInfo.openId
-        })
-        if (openIdReadyCallback) {  //如果设置了openid的回调函数，则调用回调
-          openIdReadyCallback(userInfo.openId)
-        }
-      }
-    }
-  },
-  //tunnel:由于一个小程序只能同时连接一个信道而且设计页面跳转后信道对象会销毁问题，所以将其放在app.js中统一管理
-  tunnelCreate() {//创建一个新信道，并监听相关数据的变化
-    const that = this
-    const tunnel = that.tunnel = new qcloud.Tunnel(config.service.tunnelUrl)  //放在app对象下供全局使用
-    tunnel.open()
-    tunnel.on('connect', () => {//监听信道连接
-      console.info("tunnelStatus = 'connect'")
-      this.appData.tunnelStatus = 'connect' //改变信道状态为已连接
-      if (that.tunnelConnectCallback) {//设置回调
-        that.tunnelConnectCallback()
-      }
-    })
-    tunnel.on('close', () => {//监听信道断开
-      console.info("tunnelStatus = 'close'")
-      this.appData.tunnelStatus = 'close' //改变信道状态为已断开
-      if (that.tunnelCloseCallback) {//设置回调
-        that.tunnelCloseCallback()
-      }
-    })
-    tunnel.on('reconnecting', () => {//监听信道重新链接
-      console.info("tunnelStatus = 'reconnecting'")
-      this.appData.tunnelStatus = 'reconnecting' //改变信道状态为重新连接中
-      if (that.tunnelReconnectingCallback) {//设置回调
-        that.tunnelReconnectingCallback()
-      }
-    })
-    tunnel.on('reconnect', () => {//监听信道重新连接成功
-      console.info("tunnelStatus = 'reconnect'")
-      console.info('重连后的信道为:' + tunnel.socketUrl.slice(tunnel.socketUrl.indexOf('tunnelId=') + 9, tunnel.socketUrl.indexOf('&')))
-      this.appData.tunnelStatus = 'reconnect' //改变信道状态为重新连接成功
-      if (that.tunnelReconnectCallback) {//设置回调
-        that.tunnelReconnectCallback()
-      }
-    })
-    tunnel.on('error', () => {//监听信道发生错误
-      console.info("tunnelStatus = 'error'")
-      this.appData.tunnelStatus = 'error' //改变信道状态为发生错误
-      util.showSuccess('您已断线，请检查联网')
-      wx.navigateBack({
-        url: '../entry/entry'
-      })
-      if (that.tunnelErrorCallback) {//设置回调
-        that.tunnelErrorCallback()
-      }
-    })
-    tunnel.on('PING', () => {//PING-PONG机制:监听服务器PING
-      console.info("接收到PING")
-      tunnel.emit('PONG', {//给出回应
-        openId: this.appData.openId
-      })
-      console.info("发出了PONG")
-    })
-
-  },
-  */
-
-  /******************用户关系点击表操作******************/
-  //注意1：所有从分享中启动的页面onLoad都添加：  
-  /*
-    app.appData.fromClickId = opt.currentClickId
-    app.upDateUser_networkFromClickId = require('../../utils/upDateUser_networkFromClickId.js').upDateUser_networkFromClickId
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-  */
-  //注意2：所有分享页面路径都添加：?currentClickId=' + app.appData.currentClickId,
-  //注意3：所有分享页面的分享成功回调都添加： require('../../utils/upDateShareInfoToUser_network.js').upDateShareInfoToUser_network(app,that,res)
-
   storeUser_network(opt) {
     const that = this
     const userInfo = wx.getStorageSync('user_info_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A')
@@ -237,35 +109,6 @@ App({
         }
       })
     }
-
-    /*
-    function store(that, userInfo, opt, GId = '') {  //参数内要写that：that作为一个对象不能凭空产生
-      let data = {
-        //clickId:自动生成的数据,
-        fromClickId: that.appData.fromClickId ? that.appData.fromClickId : 0,//从哪个clickId那里打开的
-        appId: that.appData.appId,
-        openId: userInfo.openId,
-        fromGId: GId,
-        scene: opt.scene,
-        //time:自动生成的数据,
-        //param_1:转发时才会更新当前clickId中的param_1数据
-      }
-      //将数据存储到数据库点击表中,同时将得到的clickId放在全局变量供page分享时调用
-      qcloud.request({
-        login: false,
-        data,
-        url: `${that.appData.baseUrl}storeUser_network`,
-        success: (res) => {
-          let currentClickId = res.data.data
-          that.appData.currentClickId = currentClickId//设置当前新插入的clickId为全局fromClickId
-          let fromClickId = that.appData.fromClickId
-          if (that.upDateUser_networkFromClickId && fromClickId) {//存在fromClickId，则进行数据库更新
-            that.upDateUser_networkFromClickId(that, currentClickId, fromClickId)
-          }
-        }
-      });
-    }
-    */
   },
   
 })

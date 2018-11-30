@@ -15,6 +15,7 @@ Page({
     id11: "kaoyan_import",
     id12: "cet4_import",
     id13: "cet6_import",
+    id15: "500",
     id14: "zy8",
     today_new_num: 0,
     today_had_choice: 0,
@@ -90,6 +91,7 @@ Page({
       var kaoyan_import = require('../../data/kaoyan_import.js')
       var suiji = require('../../data/vocabulary.js')
       var zy8 = require('../../data/zy8.js')
+      var d500 = require('../../data/500.js')
       wx.setStorage({
         key: "cet4",
         data: cet4.wordList
@@ -121,6 +123,10 @@ Page({
       wx.setStorage({
         key: "zy8",
         data: zy8.wordList
+      })
+      wx.setStorage({
+        key: "500",
+        data: d500.wordList
       })
     }
 
@@ -306,6 +312,12 @@ Page({
       data: today_list,
     })
 
+  },
+
+  goto_search(){
+    wx.navigateTo({
+      url: '../detail-word/detail-word',
+    })
   }
 
 })

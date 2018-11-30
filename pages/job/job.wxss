@@ -4,14 +4,17 @@ page{
 }
 
 .job_day{
-   width: 100%;
-
+ 
+   margin: 2%;
+  border-radius: 5px;
+   width: 96%;
    height: 400rpx;
    display: flex;
    flex-direction: column;
-   background-image: url('https://upload-images.jianshu.io/upload_images/4179819-dbd16fa38e6e175d.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/540');
+   background-image: url(https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/wxbg2.jpg);
   background-repeat: round;
-  opacity: 0.8
+  opacity: 0.8;
+
 }
 .day_num{
    width: 100%;
@@ -164,14 +167,34 @@ page{
   display: flex;
   margin-left: 2%;
   margin-right: 2%;
-  
+  margin-top: 5px;
+  border-radius: 12px;
   width: 96%;
   flex-direction: row;
-  height: 45px;
-  border-bottom: 1px solid #999;
+  height: 44px;
+  border-bottom: 1px solid #59bbd1;
   align-items: left;
   background-color: white;
+  letter-spacing: 3px; 
+	line-height: 25.59375px;
   
+}
+
+.search_botton{
+ display: flex;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 16px;
+  width: 96%;
+  flex-direction: row;
+  height: 38px;
+  border-bottom: 1px solid #59bbd1;
+  align-items: left;
+  background-color: #b1e5f1;
+  letter-spacing: 3px; 
+	line-height: 25.59375px;
 }
 
 .botton_word{

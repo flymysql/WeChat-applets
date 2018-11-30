@@ -17,14 +17,18 @@ page{
 }
 
 .head{
-  background: linear-gradient(#4d9ca8 ,#a5dcd9);
-  padding: 20px;
-  border-bottom: 5px solid #8F8F8F; 
+  background: #a4d8fa;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #8F8F8F; 
 }
 .body{
   background-color: #fff;
   padding-left: 20px;
   height: 100%;
+  letter-spacing: 0.5px; 
+	line-height: 18px;
 }
 .detail_word{
   font-weight: 900;
@@ -55,7 +59,7 @@ page{
   background-color: #fff;
 }
 .detail_defin{
-  font-size: 14px;
+  font-size: 13px;
  
   display: inline-block;
   flex-direction: row;
@@ -63,7 +67,7 @@ page{
   flex-wrap: wrap;
 }
 .detail_trans{
-  font-size: 14px;
+  font-size: 13px;
   font-family: Arial;
 }
 .detail_defin_content{
@@ -74,10 +78,13 @@ page{
 .job_day{
    width: 100%;
    height: 18%;
-   border-bottom: 5rpx solid #8F8F8F;
+   border-bottom: 2rpx solid #8F8F8F;
    display: flex;
    flex-direction: column;
-   background: linear-gradient(	#4d9ca8 ,#a5dcd9);
+   /* background-image: url(https://picture-1256429518.cos.ap-chengdu.myqcloud.com/blog/wxbg2.jpg); */
+  background-color: #a4d8fa;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
   align-items: center;
   box-sizing: border-box;
 
@@ -99,7 +106,7 @@ page{
   font-size: 16px;
   padding-top: 300rpx;
   color: #555;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .detect2{
@@ -118,6 +125,8 @@ page{
    align-items: center;
    align-content: center;
    text-align: center;
+   letter-spacing: 3px; 
+	line-height: 25.59375px;
 }
 
 .content_cpt{
@@ -226,7 +235,7 @@ page{
   flex-direction: row;
   width: 100%;
   height: 40px;
-  border: 2rpx solid rgb(151, 212, 162);
+  border: 2rpx solid #55bbdd;
   align-items: center;
   background-color: white;
   
@@ -258,7 +267,7 @@ page{
   font-size: 60rpx;
   line-height: 90rpx;
   text-align: center;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+ 
   color: red;
 }
 .zf{
@@ -271,8 +280,8 @@ page{
   font-size: 60rpx;
   line-height: 90rpx;
   text-align: center;
-  background-color: #4d9ca8;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: #a4d8fa;
+ 
   color: red;
 }
 .complete{
@@ -339,51 +348,43 @@ page{
   font-weight: 800
 }
 .myButton1 {
-	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
-	border-radius:6px;
-  background-color: #b8e356;
-	border:1px solid #83c41a;
+	border-radius: 3px;
+  background-color: #a4d8fa;
 	display:inline-block;
-	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
 	font-size:15px;
-	font-weight:bold;
+	font-weight: 400;
   width: 30%;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #86ae47;
 }
 
 .myButton2 {
-	box-shadow:inset 0px 1px 0px 0px #fce2c1;
-	border-radius:6px;
+
+	border-radius: 3px;
   background-color: #ffc477;
-	border:1px solid #eeb44f;
+
 	display:inline-block;
-	cursor:pointer;
+
 	color:#ffffff;
 	font-family:Arial;
 	font-size:15px;
-	font-weight:bold;
+	font-weight: 400;
   width: 30%;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #cc9f52;
+
 }
 
 .myButton3 {
-	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
-	border-radius:6px;
+
+	border-radius: 3px;
   background-color: #fc8d83;
-	border:1px solid #d83526;
 	display:inline-block;
-	cursor:pointer;
+
 	color:#ffffff;
 	font-family:Arial;
 	font-size:15px;
-	font-weight:bold;
+	font-weight: 400;
   width: 30%;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #b23e35;
+
 }
 
 .title {

@@ -1,8 +1,8 @@
 {
       "backgroundTextStyle": "light",
-      "backgroundColor": "#4a475b",
-      "navigationBarBackgroundColor": "#4a475b",
-      "navigationBarTitleText": "小鸡单词",
+      "backgroundColor": "#58bbd1",
+      "navigationBarBackgroundColor": "#58bbd1",
+      "navigationBarTitleText": "选词",
       "navigationBarTextStyle": "white"
 
 }
