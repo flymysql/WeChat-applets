@@ -1,35 +1,56 @@
 {
-	"description": "项目配置文件。",
+	"description": "小鸡单词 —— 微信小程序背单词应用",
+	"packOptions": {
+		"ignore": [],
+		"include": []
+	},
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
-		"minified": false,
-		"newFeature": true
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": false,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"lazyloadPlaceholderEnable": false,
+		"useMultiFrameRuntime": true,
+		"useApiHook": true,
+		"useApiHostProcess": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"enableEngineNative": false,
+		"useIsolateContext": true,
+		"userConfirmedBundleSwitch": false,
+		"packNpmManually": false,
+		"packNpmRelationList": [],
+		"minifyWXSS": true,
+		"disableUseStrict": false,
+		"minifyWXML": true,
+		"showES6CompileOption": false,
+		"useCompilerPlugins": false,
+		"ignoreUploadUnusedFiles": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.0",
+	"libVersion": "3.7.8",
 	"appid": "wx90951b51c0e9f6f9",
-	"projectname": "%E5%B0%8F%E9%B8%A1%E5%8D%95%E8%AF%8D",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": []
-		}
-	}
+	"projectname": "chicken-word",
+	"condition": {},
+	"editorSetting": {
+		"tabIndent": "tab",
+		"tabSize": 2
+	},
+	"simulatorPluginLibVersion": {}
 }

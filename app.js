@@ -1,9 +1,8 @@
-//app.js
+// app.js —— 小鸡单词
 var Bmob = require('/dist/Bmob-1.6.4.min.js');
-//var qcloud = require('./vendor/wafer2-client-sdk/index');
-//var config = require('./config');
+var config = require('./config.js');
 var util = require('./utils/util.js')
-Bmob.initialize("你的bmob云appid", "你的bmob云密钥");
+Bmob.initialize(config.BM_APP_ID, config.BM_SECRET_KEY);
 
 App({
   globalData:{
@@ -14,8 +13,6 @@ App({
   },
   onLaunch(opt) {
     this.appData.opt = opt
-   // qcloud.setLoginUrl(config.service.loginUrl);  //设置登录地址
-   // this.doLogin();
     Bmob.User.auth().then(res => {
       console.log(res)
       const query = Bmob.Query('_User');
@@ -83,31 +80,47 @@ App({
       }
     }
     function getGId(that, userInfo, opt) {
-      //判断是否是从微信群内打开该程序的
+      // 判断是否是从微信群内打开该程序的
       wx.getShareInfo({
-        shareTicket: opt.shareTicket,
-        //含GId的情况
+        shareTicket: opt && opt.shareTicket,
+        // 含GId的情况
         success: (res) => {
-          qcloud.request({
-            login: false,
-            data: {
-              appId: that.appData.appId,
-              openId: userInfo.openId,
-              encryptedData: res.encryptedData,
-              iv: res.iv
-            },
-            url: `${that.appData.baseUrl}getGId`,
-            success: (res) => {
-              let GId = res.data.data
-              store(that, userInfo, opt, GId)
-            }
-          })
+          // qcloud 为可选依赖：未接入 waft2 云开发时跳过 GId 上报
+          if (typeof qcloud !== 'undefined' && qcloud.request) {
+            qcloud.request({
+              login: false,
+              data: {
+                appId: that.appData.appId,
+                openId: userInfo.openId,
+                encryptedData: res.encryptedData,
+                iv: res.iv
+              },
+              url: `${that.appData.baseUrl}getGId`,
+              success: (res) => {
+                const GId = res.data.data
+                safeStore(that, userInfo, opt, GId)
+              }
+            })
+          } else {
+            safeStore(that, userInfo, opt)
+          }
         },
-        //不含GId的情况
+        // 不含GId的情况
         fail: function (res) {
-          store(that, userInfo, opt)
+          safeStore(that, userInfo, opt)
         }
       })
+    }
+
+    // 原实现缺失的 store 函数：静默兼容（未接入云开发时数据仅存本地）
+    function safeStore(that, userInfo, opt, GId) {
+      try {
+        wx.setStorageSync('user_info_local', userInfo || {})
+        if (GId) wx.setStorageSync('group_id', GId)
+        console.log('[小鸡单词] 用户关系记录已保存（本地模式）')
+      } catch (e) {
+        console.warn('[小鸡单词] 保存用户关系失败', e)
+      }
     }
   },
   

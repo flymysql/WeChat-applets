@@ -82,10 +82,11 @@ Page({
   onLoad: function (options) {
     var windowWidth = 320;
     try {
-      var res = wx.getSystemInfoSync();
+      // wx.getWindowInfo 为 2.20.1+ 推荐 API；wx.getSystemInfoSync 已弃用但保留兼容
+      var res = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
       windowWidth = res.windowWidth;
     } catch (e) {
-      console.error('getSystemInfoSync failed!');
+      console.error('getWindowInfo failed!');
     }
 
     var simulationData = this.createSimulationData();
