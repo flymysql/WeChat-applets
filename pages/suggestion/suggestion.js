@@ -1,7 +1,5 @@
 // pages/suggestion/suggestion.js
-var Bmob = require('../../dist/Bmob-1.6.4.min.js');
-var config = require('../../config.js');
-Bmob.initialize(config.BM_APP_ID, config.BM_SECRET_KEY);
+var cloud = require('../../utils/cloud.js');
 
 Page({
 
@@ -72,14 +70,19 @@ Page({
 
   },
   ok(){
-    wx.showToast({ title: '提交成功' })
-    const query = Bmob.Query('suggestion');
-    query.set("content", this.data.voteTitle)
-    query.set("name", wx.getStorageSync("userInfo").nickName)
-    query.save().then(res => {
-      console.log(res)
+    // 腾讯云开发：提交建议到 suggestion 集合（替代原 Bmob）
+    const content = this.data.voteTitle;
+    if (!content) {
+      wx.showToast({ title: '内容不能为空', icon: 'none' });
+      return;
+    }
+    const name = (wx.getStorageSync("userInfo") || {}).nickName || '匿名';
+    cloud.suggest(content, name).then(res => {
+      console.log('建议提交成功', res);
+      wx.showToast({ title: '提交成功' });
     }).catch(err => {
-      console.log(err)
+      console.error('建议提交失败', err);
+      wx.showToast({ title: '提交失败，请重试', icon: 'none' });
     })
   }
 

@@ -1,8 +1,6 @@
 // pages/test/test.js
 
-var Bmob = require('../../dist/Bmob-1.6.4.min.js');
-var config = require('../../config.js');
-Bmob.initialize(config.BM_APP_ID, config.BM_SECRET_KEY);
+var cloud = require('../../utils/cloud.js');
 var list = require('../../data/vocabulary.js')
 //var qcloud = require('../../vendor/wafer2-client-sdk/index')
 //var config = require('../../config')
@@ -188,57 +186,16 @@ Page({
     this.search()
   },
   set_score(score) {
-    
-    if(!wx.getStorageSync("diary_id"))
-    {
-      const query = Bmob.Query('diary');
-      query.set("score", score)
-      query.set("head_url", wx.getStorageSync('userInfo').avatarUrl)
-      query.set("title", wx.getStorageSync('userInfo').nickName)
-      query.save().then(res => {
-        console.log(res)
-        
-      }).catch(err => {
-        console.log(err)
-        wx.setStorage({
-          key: 'diary_id',
-          data: res.objectId,
-        })
-      })
-    }
-    else{
-      const query = Bmob.Query('tableName');
-      query.get(wx.getStorageSync("diary_id")).then(res => {
-        console.log(res)
-        res.set("score", score)
-        res.set("head_url", wx.getStorageSync('userInfo').avatarUrl)
-        res.set("title", wx.getStorageSync('userInfo').nickName)
-        res.save()
-      }).catch(err => {
-        console.log(err)
-      })
-    }
-    
-    /*
-    var openId = this.data.openId
-    if (openId) {
-      qcloud.request({
-        login: false,
-        url: `${app.appData.baseUrl}set_score`,
-        data: {
-          openId,
-          score,
-        },
-        success: (res) => {
-          console.log(res)
-
-        },
-        fail(error) {
-          util.showModel('请求失败', error);
-        },
-      });
-    }
-    */
+    // 腾讯云开发：提交测试分数到排行榜（替代原 Bmob diary）
+    const userInfo = wx.getStorageSync('userInfo') || {};
+    cloud.setScore(score, userInfo).then(res => {
+      console.log('分数提交成功', res);
+      if (res.id) {
+        wx.setStorageSync('diary_id', res.id);
+      }
+    }).catch(err => {
+      console.error('分数提交失败', err);
+    });
   },
   getScore(openId) {
     /*
@@ -267,25 +224,14 @@ Page({
    
   },
   getRankGlobalData() {//加载全球排名的数据
-
-    const query = Bmob.Query('diary');
-    //query.limit(10);
-    query.order("score");
-    query.find().then(res => {
-    console.log(res);
-    var len=res.length;
-    for(var i=0;i<5;i++){
-      for(var j=i+1;j<len;j++){
-        if(res[i]<res[j]){
-          var temp=res[i];
-          res[i]=res[j];
-          res[j]=temp;
-        }
-      }
-    }
-    this.setData({ globalData:res})
-    
-
+    // 腾讯云开发：从云端获取排行榜（替代原 Bmob diary）
+    const that = this;
+    cloud.getRank(20).then(res => {
+      console.log('排行榜数据', res.data);
+      that.setData({ globalData: res.data || [] });
+    }).catch(err => {
+      console.error('排行榜加载失败', err);
+      that.setData({ globalData: [] });
     });
 
 

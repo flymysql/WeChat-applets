@@ -1,8 +1,16 @@
 // app.js —— 小鸡单词
-var Bmob = require('/dist/Bmob-1.6.4.min.js');
 var config = require('./config.js');
 var util = require('./utils/util.js')
-Bmob.initialize(config.BM_APP_ID, config.BM_SECRET_KEY);
+
+// 初始化云开发（腾讯云 CloudBase，替代原 Bmob 云）
+if (!wx.cloud) {
+  console.error('当前基础库版本过低，请使用 2.2.3 以上版本以支持云开发');
+} else {
+  wx.cloud.init({
+    env: config.CLOUD_ENV,
+    traceUser: true,
+  });
+}
 
 App({
   globalData:{
@@ -13,28 +21,9 @@ App({
   },
   onLaunch(opt) {
     this.appData.opt = opt
-    Bmob.User.auth().then(res => {
-      console.log(res)
-      const query = Bmob.Query('_User');
-      query.get(res.objectId).then(res => {
-        console.log(res)
-        wx.setStorage({
-          key: 'data_objectid',
-          data: res.data_objectid,
-        })
-      }).catch(err => {
-        console.log(err)
-      })
-      wx.setStorage({
-        key: 'usr_objectId',
-        data: res.objectId,
-      })
-      
-      console.log('一键登陆成功')
 
-    }).catch(err => {
-      console.log(err)
-    });
+    // 云开发登录：获取 openid 并保存（替代 Bmob.User.auth）
+    this.cloudLogin();
 
     this.globalData.userInfo=wx.getStorageSync("userInfo")
     if(!wx.getStorageSync("word_list")&&!wx.getStorageSync("all_detail")){
@@ -63,6 +52,26 @@ App({
     }    
   },
 
+  /**
+   * 云开发登录：调用 login 云函数获取 openid
+   * 替代原 Bmob.User.auth() 一键登录
+   */
+  cloudLogin() {
+    if (!wx.cloud) return Promise.resolve(null);
+    return wx.cloud.callFunction({
+      name: 'login',
+    }).then(res => {
+      const openid = res.result && res.result.openid;
+      if (openid) {
+        wx.setStorageSync('openid', openid);
+        console.log('云开发登录成功, openid:', openid);
+      }
+      return openid;
+    }).catch(err => {
+      console.error('云开发登录失败', err);
+      return null;
+    });
+  },
 
   onShow(opt) {
     this.storeUser_network(opt)//每次打开程序都启动存储用户关系表

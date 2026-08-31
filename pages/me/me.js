@@ -1,7 +1,5 @@
 
-var Bmob = require('../../dist/Bmob-1.6.4.min.js');
-var config = require('../../config.js');
-Bmob.initialize(config.BM_APP_ID, config.BM_SECRET_KEY);
+var cloud = require('../../utils/cloud.js');
 const app = getApp()
 Page({
 
@@ -53,57 +51,28 @@ Page({
   },
 
   toup(){
-    const query = Bmob.Query('user_data');
-    var obid = wx.getStorageSync("data_objectid");
-    if( obid===undefined || obid===null){
-      query.set("username", wx.getStorageSync("userInfo").nickName)
-      query.set("word_list", wx.getStorageSync("word_list"))
-      query.set("day_num", wx.getStorageSync("day_num"))
-      query.set("openid", wx.getStorageSync("openid"))
-      query.set("all_detail", wx.getStorageSync("all_detail"))
-      query.set("my_word_num", wx.getStorageSync("my_word_num"))
-      query.set("free_word_num", wx.getStorageSync("free_word_num"))
-      query.save().then(res => {
-        console.log(res)
-        wx.setStorage({
-          key: 'data_objectid',
-          data: res.objectId,
-        })
-        const query2 = Bmob.Query('_User');
-        query2.get(wx.getStorageSync("usr_objectId")).then(res => {
-          console.log(res)
-          res.set('data_objectid', wx.getStorageSync("data_objectid"))
-          res.save()
-        }).catch(err => {
-          console.log(err)
-        })
-      }).catch(err => {
-        console.log(err)
-      })
-    }
-    else{
-      query.get(obid).then(res => {
-        console.log(res)
-        res.set("username", wx.getStorageSync("userInfo").nickName)
-        res.set("word_list", wx.getStorageSync("word_list"))
-        res.set("day_num", wx.getStorageSync("day_num"))
-        res.set("openid", wx.getStorageSync("openid"))
-        res.set("all_detail", wx.getStorageSync("all_detail"))
-        res.set("my_word_num", wx.getStorageSync("my_word_num"))
-        res.set("free_word_num", wx.getStorageSync("free_word_num"))
-        res.save()
-
-      }).catch(err => {
-
-      })
-    }
-    
-    this.setData({tobackup:false})
-    wx.showToast({
-      title: '备份成功'
-    })
-
-    
+    // 腾讯云开发：备份用户学习数据（替代原 Bmob user_data）
+    const userInfo = wx.getStorageSync("userInfo") || {};
+    const payload = {
+      username: userInfo.nickName || '',
+      word_list: wx.getStorageSync("word_list") || [],
+      day_num: wx.getStorageSync("day_num") || 10,
+      all_detail: wx.getStorageSync("all_detail") || [],
+      my_word_num: wx.getStorageSync("my_word_num") || 0,
+      free_word_num: wx.getStorageSync("free_word_num") || 0,
+    };
+    cloud.backup(payload).then(res => {
+      console.log('备份成功', res);
+      if (res.id) {
+        wx.setStorageSync('data_objectid', res.id);
+      }
+      this.setData({ tobackup: false });
+      wx.showToast({ title: '备份成功' });
+    }).catch(err => {
+      console.error('备份失败', err);
+      this.setData({ tobackup: false });
+      wx.showToast({ title: '备份失败', icon: 'none' });
+    });
   },
 
   my_word_list(){
@@ -113,38 +82,23 @@ Page({
   },
 
   toback(){
-    const query = Bmob.Query('user_data');
-    query.get(wx.getStorageSync("data_objectid")).then(res => {
-      wx.setStorage({
-        key: 'word_list',
-        data: res.word_list,
-      })
-      wx.setStorage({
-        key: 'day_num',
-        data: res.day_num,
-      })
-      wx.setStorage({
-        key: 'all_detail',
-        data: res.all_detail,
-      })
-      wx.setStorage({
-        key: 'my_word_num',
-        data: res.my_word_num,
-      })
-      wx.setStorage({
-        key: 'free_word_num',
-        data: res.free_word_num,
-      })
-      wx.showToast({
-        title: '还原成功'
-      })
+    // 腾讯云开发：从云端恢复用户学习数据（替代原 Bmob user_data）
+    cloud.restore().then(res => {
+      if (!res.ok || !res.data) {
+        throw new Error('no_backup');
+      }
+      const d = res.data;
+      wx.setStorageSync('word_list', d.word_list || []);
+      wx.setStorageSync('day_num', d.day_num || 10);
+      wx.setStorageSync('all_detail', d.all_detail || []);
+      wx.setStorageSync('my_word_num', d.my_word_num || 0);
+      wx.setStorageSync('free_word_num', d.free_word_num || 0);
+      wx.showToast({ title: '还原成功' });
     }).catch(err => {
-      console.log(err)
-      wx.showToast({
-        title: '还原失败，请确认登陆并有先前的备份！'
-      })
-    })
-    this.setData({tobackup:false})
+      console.error('还原失败', err);
+      wx.showToast({ title: '还原失败，请确认登陆并有先前的备份！', icon: 'none' });
+    });
+    this.setData({ tobackup: false });
   },
 
 
@@ -153,7 +107,6 @@ Page({
     var info = e.detail.userInfo;
     app.globalData.userInfo = info
     
-    Bmob.User.upInfo(info)
     console.log(info)
     this.setData({
       userInfo: info,

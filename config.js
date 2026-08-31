@@ -1,19 +1,18 @@
 /**
  * 小鸡单词 —— 全局配置
  *
- * 使用 Bmob 云后端（https://bmob.cn）存储用户数据。
- * 使用前请前往 Bmob 控制台创建应用，并将下方占位符替换为你的 AppID / 密钥。
+ * 后端已从 Bmob 云迁移至【微信云开发 CloudBase】（腾讯云）。
  *
- * 快速开始：
- *   1. 在 bmob.cn 注册并创建应用
- *   2. 复制应用密钥到下方 BM_APP_ID / BM_SECRET_KEY
- *   3. 用微信开发者工具导入本项目即可运行
+ * 使用前需要：
+ *   1. 在微信开发者工具中开通云开发（工具栏 -> 云开发 -> 开通，创建环境）
+ *   2. 将下方 CLOUD_ENV 替换为你的云开发环境 ID（如 "cloud1-xxxx"）
+ *   3. 在云开发控制台创建数据库集合：user_data / diary / suggestion
+ *   4. 部署云函数：cloudfunctions/login、cloudfunctions/data
+ *   5. 编译运行
  */
 
-const BM_APP_ID = '你的bmob云appid';      // TODO: 替换为你的 Bmob AppID
-const BM_SECRET_KEY = '你的bmob云密钥';    // TODO: 替换为你的 Bmob 密钥
+const CLOUD_ENV = 'your-cloud-env-id';  // TODO: 替换为你的云开发环境 ID
 
 module.exports = {
-  BM_APP_ID,
-  BM_SECRET_KEY,
+  CLOUD_ENV,
 };
